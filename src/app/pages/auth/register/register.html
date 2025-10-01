@@ -1,1 +1,51 @@
-<p>register works!</p>
+<mat-toolbar
+    class="toolbar d-flex justify-content-between align-items-center px-3">
+    <!-- ซ้าย: โลโก้ -->
+    <div>
+        <img src="assets/Images/logo.png" alt="logo" width="250px">
+    </div>
+
+    <!-- ขวา: ข้อความ + ปุ่ม -->
+    <div class="d-flex flex-column align-items-end text-end me-4">
+        <div class="text-white mb-2">มีบัญชีอยู๋แล้ว?</div>
+        <button class="btn btn-primary">เข้าสู่ระบบ</button>
+    </div>
+
+</mat-toolbar>
+
+<h2 class="text-center  text-white"
+    style="margin-right: 25rem; margin-top: 5rem;">สร้างบัญชีของคุณ</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card-login card p-4 shadow">
+                <form>
+                    <div class="mb-3">
+                        <label for="username"
+                            class="form-label">ชื่อผู้ใช้</label>
+                        <input type="text" class="form-control" id="username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email"
+                            class="form-label">อีเมล</label>
+                        <input type="text" class="form-control" id="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password"
+                            class="form-label">รหัสผ่าน</label>
+                        <input type="password" class="form-control"
+                            id="password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password"
+                            class="form-label">ยืนรหัสผ่าน</label>
+                        <input type="password" class="form-control"
+                            id="password">
+                    </div>
+                    <button type="submit"
+                        class="btn btn-primary w-25 mx-auto d-block">สมัครสมาชิก</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
