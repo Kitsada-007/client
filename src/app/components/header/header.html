@@ -1,8 +1,69 @@
-<p>header works!</p>
-<nav style="background-color: beige;">
+<!-- <nav style="background-color: beige;">
     <a routerLink="/profile">profile</a>
     <br>
     <a routerLink="/shopping">ร้านค้า</a>
     <br>
     <a routerLink="/collection">คลัง</a>
-</nav>
+</nav> -->
+<mat-toolbar
+    class="toolbar d-flex justify-content-between align-items-center px-3"
+    color="primary">
+
+    <!-- กลุ่มซ้าย: โลโก้ + ปุ่มลูกศร (วางแนวตั้ง) -->
+    <div class="d-flex flex-column align-items-start">
+        <!-- โลโก้ -->
+        <img src="assets/Images/logo.png" alt="logo" width="75px" class="mb-2">
+
+        <!-- ปุ่มลูกศร + ลิงก์ -->
+        <div class="d-flex align-items-center gap-3">
+            <button mat-icon-button>
+                <mat-icon
+                    style="color: rgba(143, 152, 160, 1);">arrow_back</mat-icon>
+            </button>
+            <button mat-icon-button>
+                <mat-icon
+                    style="color: rgba(143, 152, 160, 1);">arrow_forward</mat-icon>
+            </button>
+
+            <a class="text-white" routerLink="/shopping"
+                style="text-decoration: none;">ร้านค้า</a>
+            <a class="text-white" routerLink="/collection"
+                style="text-decoration: none;">คลัง</a>
+        </div>
+    </div>
+
+    <!-- กลุ่มขวา: User Dropdown -->
+    <div class="d-flex align-items-center gap-2 me-4">
+        <button mat-button [matMenuTriggerFor]="userMenu"
+            style="background-color: rgba(39, 45, 55, 1); border-radius: 5px;">
+            <img src="assets/Images/profile.png"
+                alt="avatar" width="40" height="32"
+                style="border-radius: 5px; margin-right: 8px;">
+            <span style="color: #1e88e5; margin-right: 8px;">User</span>
+            <mat-icon style="color: #1e88e5;">keyboard_arrow_down</mat-icon>
+        </button>
+
+    </div>
+
+</mat-toolbar>
+
+<!-- Dropdown Menu -->
+<mat-menu #userMenu="matMenu">
+    <button mat-menu-item>
+
+        <span routerLink="/profile">ดูโปรไฟล์ของฉัน</span>
+    </button>
+    <button mat-menu-item>
+
+        <span routerLink="/wallet">ดูวอเล็ตของฉัน</span>
+    </button>
+    <button mat-menu-item>
+
+        <span>ประวัติการทำรายการ</span>
+    </button>
+    <hr>
+    <button mat-menu-item>
+
+        <span>ออกจากบัญชี</span>
+    </button>
+</mat-menu>

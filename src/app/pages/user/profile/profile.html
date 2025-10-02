@@ -1,1 +1,36 @@
-<p>profile works!</p>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div
+                class="card-login card p-4 shadow d-flex flex-column align-items-center">
+
+                <!-- ส่วนโปรไฟล์: รูป + ชื่อ + อีเมล -->
+                <div class="d-flex align-items-center mb-3">
+                    <!-- รูปโปรไฟล์ -->
+                    <img
+                        src="assets/Images/profile.png"
+                        alt="profile"
+                        width="176px"
+                        height="186px"
+                        style="border-radius: 2px; cursor: pointer;"
+                        (click)="fileInput.click()">
+                    <input type="file" #fileInput style="display: none;">
+
+                    <!-- ชื่อผู้ใช้และอีเมล -->
+                    <div
+                        class="ms-3 d-flex flex-column justify-content-center text-start">
+                        <h6>User</h6>
+                        <h6>email@gmail.com</h6>
+                    </div>
+                </div>
+
+                <!-- ส่วนวอเล็ต: อยู่ชิดซ้ายใต้รูป -->
+                <div class="mt-4 " style="margin-right: 150px;">
+                    <h6>ยอดเงินในวอเล็ตของฉัน</h6>
+                    <h6>เติมเงินในวอเล็ต</h6>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
