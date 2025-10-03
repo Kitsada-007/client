@@ -19,7 +19,7 @@ export class App {
       .subscribe((event: any) => {
         const currentUrl = event.urlAfterRedirects;
         this.isLoginOrRegisterPage =
-          currentUrl.includes('login') || currentUrl.includes('register');
+          currentUrl.includes('login') || currentUrl.includes('register') || currentUrl.includes('home-admin');
       });
   }
 }

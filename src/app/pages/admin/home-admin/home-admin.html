@@ -1,1 +1,30 @@
-<p>home-admin works!</p>
+<mat-toolbar
+    class="toolbar d-flex justify-content-between align-items-center px-3"
+    color="primary">
+
+    <!-- กลุ่มซ้าย: โลโก้ + ปุ่มลูกศร (วางแนวตั้ง) -->
+    <div class="d-flex flex-column align-items-start">
+        <!-- โลโก้ -->
+        <img src="assets/Images/logo.png" alt="logo" width="75px" class="mb-2">
+
+        <!-- ปุ่มลูกศร + ลิงก์ -->
+        <div class="d-flex align-items-center gap-3">
+            <button mat-icon-button>
+                <mat-icon
+                    style="color: rgba(143, 152, 160, 1);">arrow_back</mat-icon>
+            </button>
+            <button mat-icon-button>
+                <mat-icon
+                    style="color: rgba(143, 152, 160, 1);">arrow_forward</mat-icon>
+            </button>
+
+            <a class="text-white" routerLink="/home-admin"
+                >ข้อมูลเกมทั้งหมด</a>
+            <a class="text-white" routerLink=""
+                >ประวัติทำธุระกรรมผู้ใช้</a>
+            <a class="text-white" routerLink=""
+                >สร้างโค้ดส่วนลด</a>
+        </div>
+    </div>
+
+</mat-toolbar>
