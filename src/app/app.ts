@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Header } from "./components/header/header";
-import { CallApi } from "./pages/call-api/call-api";
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Header, CallApi],
+  imports: [RouterOutlet, Header],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })

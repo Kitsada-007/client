@@ -15,7 +15,6 @@ import { Edit } from './pages/admin/home-admin/edit/edit';
 import { Delete } from './pages/admin/home-admin/delete/delete';
 import { ProfileAdmin } from './pages/admin/profile-admin/profile-admin';
 import { Wallet } from './pages/user/wallet/wallet';
-import { CallApi } from './pages/call-api/call-api';
 
 export const routes: Routes = [
   // User-path
@@ -45,5 +44,4 @@ export const routes: Routes = [
     ],
   },
   { path: 'profile-admin', component: ProfileAdmin },
-  {path: 'call-api', component: CallApi},
 ];
