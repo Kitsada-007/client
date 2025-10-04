@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterLink } from '@angular/router';
-import { login } from '../../../services/api/login';
+
 import { FormsModule } from '@angular/forms';
 import { GetLoginResponse } from '../../../models/response/get_login_res';
+import { LoginService } from '../../../services/api/login';
 @Component({
   selector: 'app-login',
   imports: [MatToolbarModule, RouterLink, FormsModule,],
@@ -14,7 +15,7 @@ export class Login {
   email = '';
   password = '';
 
-  constructor(private loginService: login, private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   async onLogin() {
     try {

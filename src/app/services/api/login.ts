@@ -9,7 +9,7 @@ import { GetLoginResponse } from '../../models/response/get_login_res';
 @Injectable({
   providedIn: 'root'
 })
-export class login { 
+export class LoginService { 
   constructor(private constants : Constants, private http: HttpClient) {}
 
   public async login(data: GetLoginRequest): Promise<GetLoginResponse> {
