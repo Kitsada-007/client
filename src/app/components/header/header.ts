@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,5 +13,9 @@ import { MatMenuModule } from '@angular/material/menu';
   styleUrl: './header.scss'
 })
 export class Header {
-
+  constructor(private router: Router) { }
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
 }

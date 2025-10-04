@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -8,5 +8,11 @@ import { RouterLink } from '@angular/router';
   styleUrl: './profile.scss'
 })
 export class Profile {
-
+  constructor(private router: Router) { }
+  ngOnInit() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigate(['/login']);
+    }
+  }
 }

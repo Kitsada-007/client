@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
+import {RouterOutlet, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Header } from "./components/header/header";
+
 
 
 @Component({

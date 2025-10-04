@@ -8,12 +8,13 @@ import { MatHint } from '@angular/material/form-field';
 import { Router, RouterLink } from '@angular/router';
 import { GetRegisterRequest } from '../../../models/request/get_register_req';
 import { RegisterService } from '../../../services/api/register';
+import { F } from '@angular/cdk/keycodes';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-register',
-  standalone: true,
-  imports: [MatToolbarModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatHint, RouterLink],
+  imports: [MatToolbarModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, RouterLink, FormsModule],
   templateUrl: './register.html',
   styleUrl: './register.scss'
 })
@@ -27,7 +28,6 @@ export class Register {
   constructor(private registerService: RegisterService, private router: Router) { }
 
   async onRegister() {
-    
     const data: GetRegisterRequest = {
       firstName: this.firstName,
       lastName: this.lastName,
@@ -37,8 +37,9 @@ export class Register {
     };
 
     try {
-      console.log('ส่งข้อมูลไป API:', data);
+      console.log(data);
       const res = await this.registerService.register(data);
+      console.log(res);
       if (res.success) {
         alert('สมัครสมาชิกสำเร็จ');
         this.router.navigate(['/login']);

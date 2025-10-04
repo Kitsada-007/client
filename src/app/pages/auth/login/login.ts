@@ -3,9 +3,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterLink } from '@angular/router';
 import { login } from '../../../services/api/login';
 import { FormsModule } from '@angular/forms';
+import { GetLoginResponse } from '../../../models/response/get_login_res';
 @Component({
   selector: 'app-login',
-  imports: [MatToolbarModule, RouterLink, FormsModule],
+  imports: [MatToolbarModule, RouterLink, FormsModule,],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })
@@ -17,17 +18,24 @@ export class Login {
 
   async onLogin() {
     try {
-      const res = await this.loginService.login({ email: this.email, password: this.password });
-      localStorage.setItem('token', res.token);
+      const res: GetLoginResponse = await this.loginService.login({ email: this.email, password: this.password });
 
-      if (res.payload.role === 'admin') {
-        this.router.navigate(['/profile-admin']);
-      } else {
-        this.router.navigate(['/profile']);
+      if (res.success) {
+        localStorage.setItem('token', res.token);
+
+        if (res.payload.role === 'admin') {
+          this.router.navigate(['/profile-admin']);
+        } else {
+          this.router.navigate(['/profile']);
+        }
       }
-
-    } catch (err) {
+    } catch (err: any) {
       console.error('Login failed', err);
+      if (err.status === 401) {
+        alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง');
+      } else {
+        alert('เกิดข้อผิดพลาด กรุณาลองใหม่');
+      }
     }
   }
 }
