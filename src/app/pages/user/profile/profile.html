@@ -1,26 +1,18 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div
-                class="card-login card p-4 shadow d-flex flex-column align-items-center">
+            <div class="card-login card p-4 shadow d-flex flex-column align-items-center">
 
                 <!-- ส่วนโปรไฟล์: รูป + ชื่อ + อีเมล -->
                 <div class="d-flex align-items-center mb-3">
                     <!-- รูปโปรไฟล์ -->
-                    <img
-                        [src]="user?.profile_image || 'assets/Images/user.png'"
-                        alt="profile"
-                        width="176px"
-                        height="186px"
-                        style="border-radius: 2px; cursor: pointer;"
-                        (click)="fileInput.click()">
+                    <img [src]="user?.profile_image || 'assets/Images/user.png'" alt="profile" width="176px"
+                        height="186px" style="border-radius: 2px; cursor: pointer;" (click)="fileInput.click()">
 
-                    <input type="file" #fileInput style="display: none;"
-                        (change)="onFileSelected($event)">
+                    <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
 
                     <!-- ชื่อผู้ใช้และอีเมล -->
-                    <div
-                        class="ms-3 d-flex flex-column justify-content-center text-start">
+                    <div class="ms-3 d-flex flex-column justify-content-center text-start">
                         <h6>{{user?.username}}</h6>
                         <h6>{{user?.email}}</h6>
                     </div>
@@ -30,22 +22,20 @@
                 <div class="mt-4 " style="margin-right: 150px;">
                     <h6>ยอดเงินในวอเล็ตของฉัน: {{user?.wallet_balance}}</h6>
                     <h6>เติมเงินในวอเล็ต</h6>
-                    <form action>
+                    <form (ngSubmit)="EditProfile()">
                         <div class="mb-3">
-                            <label for="username"
-                                class="form-label">แก้ชื่อผู้ใช้</label>
-                            <input type="text" class="form-control"
-                                id="username" name="username">
+                            <label for="username" class="form-label">แก้ชื่อผู้ใช้</label>
+                            <input type="text" class="form-control" id="username" [(ngModel)]="username"
+                                name="username">
                         </div>
                         <div class="mb-3">
-                            <label for="useremail"
-                                class="form-label">แก้อีเมล</label>
-                            <input type="email" class="form-control"
-                                id="useremail" name="email">
+                            <label for="useremail" class="form-label">แก้อีเมล</label>
+                            <input type="email" class="form-control" id="useremail" [(ngModel)]="email" name="email">
                         </div>
-                        <button type="submit"
-                            class="btn btn-primary">อัปเดทข้อมูล</button>
+                        <button type="submit" class="btn btn-primary">อัปเดทข้อมูล</button>
                     </form>
+
+
 
                 </div>
             </div>

@@ -7,3 +7,7 @@ export interface GetProfileResponse {
   wallet_balance: string;
   created_at: string; 
 }
+export interface UserReq {
+  username: string;
+  email: string;
+}

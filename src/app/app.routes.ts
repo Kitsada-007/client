@@ -16,12 +16,14 @@ import { Delete } from './pages/admin/home-admin/delete/delete';
 import { ProfileAdmin } from './pages/admin/profile-admin/profile-admin';
 import { Wallet } from './pages/user/wallet/wallet';
 
+
 export const routes: Routes = [
   // User-path
   { path: '', component: Home },
   { path: 'login', component: Login },
   { path: 'register', component: Register },
   { path: 'profile', component: Profile },
+ 
   { path: 'collection', component: Collection },
   { path: 'detail-game', component: DetailGame },
   { path: 'wallet', component: Wallet },

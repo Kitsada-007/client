@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Constants } from '../../config/constants';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
-import { GetProfileResponse } from '../../models/response/get_profile_res';
+import { GetProfileResponse , UserReq} from '../../models/response/get_profile_res';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +35,24 @@ export class UserService {
       })
     );
   }
+
+public async editUserProfile(userData: Partial<UserReq>): Promise<UserReq> {
+  const token = localStorage.getItem('token');
+  if (!token) throw new Error('Token not found');
+
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`,
+    'Content-Type': 'application/json'
+  });
+
+  const url = this.constants.API_ENDPOINT + '/user';
+
+  const res = await lastValueFrom(
+    this.http.put<UserReq>(url, userData, { headers })
+  );
+
+  return res;
+}
+
 
 }
