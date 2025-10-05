@@ -18,7 +18,7 @@
                     style="color: rgba(143, 152, 160, 1);">arrow_forward</mat-icon>
             </button>
 
-            <a class="text-white" routerLink=""
+            <a class="text-white" routerLink
                 style="text-decoration: none;">ร้านค้า</a>
             <a class="text-white" routerLink="/collection"
                 style="text-decoration: none;">คลัง</a>
@@ -29,7 +29,7 @@
     <div class="d-flex align-items-center gap-2 me-4">
         <button mat-button [matMenuTriggerFor]="userMenu"
             style="background-color: rgba(39, 45, 55, 1); border-radius: 5px;">
-            <img src="assets/Images/profile.png"
+            <img [src]="user?.profile_image || 'assets/Images/user.png'"
                 alt="avatar" width="40" height="32"
                 style="border-radius: 5px; margin-right: 8px;">
             <span style="color: #1e88e5; margin-right: 8px;">User</span>

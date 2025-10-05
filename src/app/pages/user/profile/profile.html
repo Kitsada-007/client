@@ -8,25 +8,27 @@
                 <div class="d-flex align-items-center mb-3">
                     <!-- รูปโปรไฟล์ -->
                     <img
-                        src="assets/Images/profile.png"
+                        [src]="user?.profile_image || 'assets/Images/user.png'"
                         alt="profile"
                         width="176px"
                         height="186px"
                         style="border-radius: 2px; cursor: pointer;"
                         (click)="fileInput.click()">
-                    <input type="file" #fileInput style="display: none;">
+
+                    <input type="file" #fileInput style="display: none;"
+                        (change)="onFileSelected($event)">
 
                     <!-- ชื่อผู้ใช้และอีเมล -->
                     <div
                         class="ms-3 d-flex flex-column justify-content-center text-start">
-                        <h6>User</h6>
-                        <h6>email@gmail.com</h6>
+                        <h6>{{user?.username}}</h6>
+                        <h6>{{user?.email}}</h6>
                     </div>
                 </div>
 
                 <!-- ส่วนวอเล็ต: อยู่ชิดซ้ายใต้รูป -->
                 <div class="mt-4 " style="margin-right: 150px;">
-                    <h6>ยอดเงินในวอเล็ตของฉัน</h6>
+                    <h6>ยอดเงินในวอเล็ตของฉัน: {{user?.wallet_balance}}</h6>
                     <h6>เติมเงินในวอเล็ต</h6>
                 </div>
 

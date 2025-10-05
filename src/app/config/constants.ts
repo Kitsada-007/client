@@ -4,5 +4,5 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class Constants {
-  public readonly API_ENDPOINT: string = 'https://server-three-beryl.vercel.app/api';
+  public readonly API_ENDPOINT: string = 'https://server-upload-delta.vercel.app/api';
 }

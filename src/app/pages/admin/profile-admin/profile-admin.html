@@ -8,7 +8,7 @@
                 <div class="d-flex align-items-center mb-3">
                     <!-- รูปโปรไฟล์ -->
                     <img
-                        src="assets/Images/profile.png"
+                        src="{{admin?.profile_image}}"
                         alt="profile"
                         width="176px"
                         height="186px"
@@ -19,8 +19,8 @@
                     <!-- ชื่อผู้ใช้และอีเมล -->
                     <div
                         class="ms-3 d-flex flex-column justify-content-center text-start">
-                        <h6>Admin</h6>
-                        <h6>email@gmail.com</h6>
+                        <h6>{{admin?.username}}</h6>
+                        <h6>{{admin?.email}}</h6>
                     </div>
                 </div>
 
