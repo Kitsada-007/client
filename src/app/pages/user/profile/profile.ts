@@ -4,10 +4,11 @@ import { GetProfileResponse } from '../../../models/response/get_profile_res';
 import { UserService } from '../../../services/api/user';
 import { lastValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule],
   templateUrl: './profile.html',
   styleUrl: './profile.scss'
 })

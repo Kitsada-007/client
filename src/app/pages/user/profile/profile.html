@@ -30,9 +30,24 @@
                 <div class="mt-4 " style="margin-right: 150px;">
                     <h6>ยอดเงินในวอเล็ตของฉัน: {{user?.wallet_balance}}</h6>
                     <h6>เติมเงินในวอเล็ต</h6>
-                </div>
+                    <form action>
+                        <div class="mb-3">
+                            <label for="username"
+                                class="form-label">แก้ชื่อผู้ใช้</label>
+                            <input type="text" class="form-control"
+                                id="username" name="username">
+                        </div>
+                        <div class="mb-3">
+                            <label for="useremail"
+                                class="form-label">แก้อีเมล</label>
+                            <input type="email" class="form-control"
+                                id="useremail" name="email">
+                        </div>
+                        <button type="submit"
+                            class="btn btn-primary">อัปเดทข้อมูล</button>
+                    </form>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
