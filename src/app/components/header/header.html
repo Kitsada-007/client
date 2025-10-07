@@ -60,3 +60,43 @@
         <span (click)="logout()">ออกจากบัญชี</span>
     </button>
 </mat-menu>
+<!-- แถบค้นหา -->
+<div class="d-flex justify-content-center w-100 py-2">
+    <div class="d-flex align-items-center w-75" style="max-width: 900px;">
+
+        <!-- ปุ่มหมวดหมู่ -->
+        <button mat-button [matMenuTriggerFor]="CategoryMenu"
+            class="d-flex align-items-center px-3"
+            style="background-color: transparent; color: white; min-width: 120px;">
+            <span style="margin-right: 8px;">หมวดหมู่</span>
+            <mat-icon style="color: white;">keyboard_arrow_down</mat-icon>
+        </button>
+
+        <!-- ช่องค้นหา -->
+        <div class="d-flex align-items-center flex-grow-1 mx-2"
+            style="background-color: rgba(59, 70, 84, 1); border-radius: 5px; height: 40px;">
+            <input type="text" placeholder="ค้นหาในร้านค้า"
+                class="form-control border-0 text-white custom-placeholder"
+                style="background-color: transparent; box-shadow: none;" />
+            <button mat-icon-button
+                style="color: white; background-color: rgba(38, 130, 255, 1); border-radius: 1px;">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+
+        <!-- ปุ่มรถเข็น -->
+        <button routerLink="/shopping" mat-raised-button
+            style="color: aliceblue; background-color: rgba(38, 130, 255, 1); border-radius: 5px; margin-left: 8px; min-width: 90px; height: 40px;">
+            รถเข็น
+        </button>
+    </div>
+</div>
+
+<!-- Dropdown Menu -->
+<mat-menu #CategoryMenu="matMenu">
+    <button mat-menu-item><span>แอ็คชั่น</span></button>
+    <button mat-menu-item><span>ผจญภัย</span></button>
+    <button mat-menu-item><span>กีฬา</span></button>
+    <button mat-menu-item><span>กลยุทธ์</span></button>
+</mat-menu>
+<!-- content ด้านล่าง-->

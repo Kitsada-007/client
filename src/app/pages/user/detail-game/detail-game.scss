@@ -1,0 +1,37 @@
+.main-image {
+  height: 400px;
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+}
+
+.main-img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: rgba(255,255,255,0.8);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.thumbnail-row .thumb-img {
+  height: 80px;
+  width: 120px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.thumbnail-row .thumb-img.selected {
+  border-color: #fff;
+}
+
+.purchase-section .price-input {
+  width: 100px;
+}
