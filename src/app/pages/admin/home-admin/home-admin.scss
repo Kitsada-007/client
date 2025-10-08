@@ -3,3 +3,26 @@
     height: fit-content;
     
 }
+
+
+label, h4{
+    color: white;
+}
+
+input.form-control, textarea.form-control {
+    background-color: rgba(50, 53, 60, 1);
+    border: none;
+    color: white;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+a:hover{
+    color: #0d6efd;
+    
+}

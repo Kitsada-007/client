@@ -10,9 +10,6 @@ import { ShoppingCart } from './pages/user/shopping-cart/shopping-cart';
 import { AddMonny } from './pages/user/history/add-monny/add-monny';
 import { BuyGram } from './pages/user/history/buy-gram/buy-gram';
 import { HomeAdmin } from './pages/admin/home-admin/home-admin';
-import { Add } from './pages/admin/home-admin/add/add';
-import { Edit } from './pages/admin/home-admin/edit/edit';
-import { Delete } from './pages/admin/home-admin/delete/delete';
 import { ProfileAdmin } from './pages/admin/profile-admin/profile-admin';
 import { Wallet } from './pages/user/wallet/wallet';
 
@@ -37,13 +34,8 @@ export const routes: Routes = [
   },
   // admin-path
   {
-    path: 'home-admin',
-    component: HomeAdmin,
-    children: [
-      { path: 'add', component: Add },
-      { path: 'edit', component: Edit },
-      { path: 'delete', component: Delete },
-    ],
+    path: 'home-admin',component: HomeAdmin,
+
   },
   { path: 'profile-admin', component: ProfileAdmin },
 ];

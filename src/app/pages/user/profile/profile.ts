@@ -5,16 +5,16 @@ import {
   UserReq,
 } from '../../../models/response/get_profile_res';
 import { UserService } from '../../../services/api/user';
-import { lastValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 
 import { MatButtonModule } from '@angular/material/button';
+import { RouterLink as RouterLink_1 } from '@angular/router';
 @Component({
   selector: 'app-profile',
-  imports: [ FormsModule, CommonModule , MatButtonModule,MatInputModule ],
+  imports: [FormsModule, CommonModule, MatButtonModule, MatInputModule, RouterLink_1],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })
@@ -29,26 +29,26 @@ export class Profile {
     private router: Router,
     private userService: UserService,
     private http: HttpClient
-  ) {}
+  ) { }
 
-  
-async ngOnInit() {
-  const token = localStorage.getItem('token');
-  if (!token) {
-    this.router.navigate(['/login']);
-    return;
-  }
 
-  try {
-    this.user = await this.userService.getUser();
-    // เพิ่มบรรทัดนี้เพื่อเซ็ตค่าเริ่มต้น
-    this.username = this.user?.username || '';
-    this.email = this.user?.email || '';
-  } catch (err) {
-    console.error('Failed to load user', err);
-    this.router.navigate(['/login']);
+  async ngOnInit() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    try {
+      this.user = await this.userService.getUser();
+      // เพิ่มบรรทัดนี้เพื่อเซ็ตค่าเริ่มต้น
+      this.username = this.user?.username || '';
+      this.email = this.user?.email || '';
+    } catch (err) {
+      console.error('Failed to load user', err);
+      this.router.navigate(['/login']);
+    }
   }
-}
 
   // เลือกไฟล์
   onFileSelected(event: Event) {
@@ -86,26 +86,26 @@ async ngOnInit() {
     }
   }
 
-async EditProfile() {
-  try {
-    const updatedData = {
-      username: this.username,
-      email: this.email
-    };
-    console.log(updatedData.email + " "+ updatedData.username)
-    const response = await this.userService.editUserProfile(updatedData);
+  async EditProfile() {
+    try {
+      const updatedData = {
+        username: this.username,
+        email: this.email
+      };
+      console.log(updatedData.email + " " + updatedData.username)
+      const response = await this.userService.editUserProfile(updatedData);
 
-    console.log('Profile updated:', response);
+      console.log('Profile updated:', response);
 
-    
-    this.username = response.username;
-    this.email = response.email;
-  
 
-    window.location.reload();
-  } catch (error) {
-    console.error('Error updating profile:', error);
+      this.username = response.username;
+      this.email = response.email;
+
+
+      window.location.reload();
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
   }
-}
 
 }

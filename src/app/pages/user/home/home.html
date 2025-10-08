@@ -12,79 +12,23 @@
 
         <div id="gameCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <!-- เกมที่ 1 -->
-                <div class="carousel-item active">
+                <div
+                    class="carousel-item"
+                    *ngFor="let game of games; let i = index"
+                    [class.active]="i === 0">
+
                     <div
                         class="img-tittle d-flex flex-wrap align-items-start bg-dark p-3 rounded">
                         <div class="col-md-6">
-                            <img src="assets/Images/Rectangle 19.png"
-                                class="img-fluid rounded"
-                                alt="Little Nightmares III">
+                            <div class="placeholder-img bg-secondary rounded"
+                                style="width:100%; height:250px;"></div>
                         </div>
                         <div class="col-md-6 ps-md-4 mt-3 mt-md-0">
-                            <h5>Little Nightmares III</h5>
-                            <div class="d-flex flex-wrap gap-2 mt-3">
-                                <img src="assets/Images/Rectangle 57 (1).png"
-                                    class="img-thumbnail small-thumb">
-                                <img src="assets/Images/Rectangle 57 (2).png"
-                                    class="img-thumbnail small-thumb">
-                                <img src="assets/Images/Rectangle 57.png"
-                                    class="img-thumbnail small-thumb">
-                                <img src="assets/Images/Rectangle 58.png"
-                                    class="img-thumbnail small-thumb">
-                            </div>
+                            <h3>{{ game.name }}</h3>
+
                         </div>
                     </div>
                 </div>
-
-                <!-- เกมที่ 2 -->
-                <div class="carousel-item">
-                    <div
-                        class="d-flex flex-wrap align-items-start bg-dark p-3 rounded">
-                        <div class="col-md-6">
-                            <img src="assets/Images/Rectangle 19.png"
-                                class="img-fluid rounded" alt="Hollow Knight">
-                        </div>
-                        <div class="col-md-6 ps-md-4 mt-3 mt-md-0">
-                            <h5>Hollow Knight</h5>
-                            <div class="d-flex flex-wrap gap-2 mt-3">
-                                <img src="assets/Images/game2-1.png"
-                                    class="img-thumbnail small-thumb">
-                                <img src="assets/Images/game2-2.png"
-                                    class="img-thumbnail small-thumb">
-                                <img src="assets/Images/game2-3.png"
-                                    class="img-thumbnail small-thumb">
-                                <img src="assets/Images/game2-4.png"
-                                    class="img-thumbnail small-thumb">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- เกมที่ 3 -->
-                <div class="carousel-item">
-                    <div
-                        class="d-flex flex-wrap align-items-start bg-dark p-3 rounded">
-                        <div class="col-md-6">
-                            <img src="assets/Images/Rectangle 19.png"
-                                class="img-fluid rounded" alt="Inside">
-                        </div>
-                        <div class="col-md-6 ps-md-4 mt-3 mt-md-0">
-                            <h5>Inside</h5>
-                            <div class="d-flex flex-wrap gap-2 mt-3">
-                                <img src="assets/Images/game3-1.png"
-                                    class="img-thumbnail small-thumb">
-                                <img src="assets/Images/game3-2.png"
-                                    class="img-thumbnail small-thumb">
-                                <img src="assets/Images/game3-3.png"
-                                    class="img-thumbnail small-thumb">
-                                <img src="assets/Images/game3-4.png"
-                                    class="img-thumbnail small-thumb">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
             <!-- ปุ่มเลื่อนซ้าย/ขวา -->
@@ -96,7 +40,6 @@
                 data-bs-target="#gameCarousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon"></span>
             </button>
-
         </div>
     </div>
 </div>

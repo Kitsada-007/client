@@ -25,9 +25,9 @@ export class Login {
         localStorage.setItem('token', res.token);
 
         if (res.payload.role === 'admin') {
-          this.router.navigate(['/profile-admin']);
+          this.router.navigate(['/home-admin']);
         } else {
-          this.router.navigate(['/profile']);
+          this.router.navigate(['']);
         }
       }
     } catch (err: any) {

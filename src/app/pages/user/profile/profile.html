@@ -1,43 +1,61 @@
-<div class="container mt-5">
+<div class="container my-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card-login card p-4 shadow d-flex flex-column align-items-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="card shadow p-4 bg-dark text-white">
 
                 <!-- ส่วนโปรไฟล์: รูป + ชื่อ + อีเมล -->
-                <div class="d-flex align-items-center mb-3">
+                <div class="d-flex align-items-center mb-4">
                     <!-- รูปโปรไฟล์ -->
-                    <img [src]="user?.profile_image || 'assets/Images/user.png'" alt="profile" width="176px"
-                        height="186px" style="border-radius: 2px; cursor: pointer;" (click)="fileInput.click()">
-
-                    <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+                    <div class="me-4 text-center">
+                        <img
+                            [src]="user?.profile_image || 'assets/Images/user.png'"
+                            alt="profile" width="150" height="150"
+                            class="rounded" style="cursor: pointer;"
+                            (click)="fileInput.click()">
+                        <input type="file" #fileInput style="display: none;"
+                            (change)="onFileSelected($event)">
+                    </div>
 
                     <!-- ชื่อผู้ใช้และอีเมล -->
-                    <div class="ms-3 d-flex flex-column justify-content-center text-start">
-                        <h6>{{user?.username}}</h6>
-                        <h6>{{user?.email}}</h6>
+                    <div class="flex-grow-1">
+                        <h4 class="mb-1">{{ user?.username }}</h4>
+                        <p class="mb-0 ">{{ user?.email }}</p>
                     </div>
                 </div>
 
-                <!-- ส่วนวอเล็ต: อยู่ชิดซ้ายใต้รูป -->
-                <div class="mt-4 " style="margin-right: 150px;">
-                    <h6>ยอดเงินในวอเล็ตของฉัน: {{user?.wallet_balance}}</h6>
-                    <h6>เติมเงินในวอเล็ต</h6>
-                    <form (ngSubmit)="EditProfile()">
-                        <div class="mb-3">
-                            <label for="username" class="form-label">แก้ชื่อผู้ใช้</label>
-                            <input type="text" class="form-control" id="username" [(ngModel)]="username"
+                <!-- ส่วนวอเล็ต -->
+                <div class="mb-4 p-3 bg-secondary rounded">
+                    <h6 class="mb-2">ยอดเงินในวอเล็ตของฉัน: <span
+                            class="fw-bold">{{ user?.wallet_balance
+                            }}</span></h6>
+                    <button routerLink="/wallet"
+                        class="btn btn-outline-light btn-sm">เติมเงิน</button>
+                </div>
+
+                <!-- ฟอร์มแก้ไขข้อมูล -->
+                <form (ngSubmit)="EditProfile()">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="username"
+                                class="form-label">แก้ชื่อผู้ใช้</label>
+                            <input type="text" class="form-control"
+                                id="username" [(ngModel)]="username"
                                 name="username">
                         </div>
-                        <div class="mb-3">
-                            <label for="useremail" class="form-label">แก้อีเมล</label>
-                            <input type="email" class="form-control" id="useremail" [(ngModel)]="email" name="email">
+                        <div class="col-md-6">
+                            <label for="useremail"
+                                class="form-label">แก้อีเมล</label>
+                            <input type="email" class="form-control"
+                                id="useremail" [(ngModel)]="email" name="email">
                         </div>
-                        <button type="submit" class="btn btn-primary">อัปเดทข้อมูล</button>
-                    </form>
+                    </div>
+                    <div class="mt-4 text-end">
+                        <button type="submit"
+                            class="btn btn-primary">อัปเดทข้อมูล</button>
+                    </div>
+                </form>
 
-
-
-                </div>
             </div>
         </div>
     </div>
+</div>
