@@ -91,7 +91,7 @@ export class HomeAdmin {
     });
 
   }
-  
+
   // ยกเลิกการแก้ไข
   cancelEdit() {
     this.gameForm.reset();
