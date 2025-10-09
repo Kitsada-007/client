@@ -19,7 +19,7 @@
                     style="color: rgba(143, 152, 160, 1);">arrow_forward</mat-icon>
             </button>
 
-            <a class="text-white">ข้อมูลเกมทั้งหมด</a>
+            <a class="text-white" >ข้อมูลเกมทั้งหมด</a>
             <a class="text-white">ประวัติทำธุระกรรมผู้ใช้</a>
             <a class="text-white">สร้างโค้ดส่วนลด</a>
         </div>
@@ -104,17 +104,18 @@
             <tbody>
                 <tr *ngFor="let game of games">
                     <td>
-                        <img [src] alt="cover"
+                        <img [src]="" alt="cover"
                             style="width:70px; height:70px; object-fit:cover; border-radius:5px;">
+
                     </td>
                     <td>{{ game.name }}</td>
                     <td>{{ game.genre }}</td>
                     <td>{{ game.price }}</td>
                     <td
                         style="max-width:250px; white-space:pre-wrap; text-align:left;">
-                        {{ game.description }}
+                        
                     </td>
-                    <td>{{ formatThaiDate(game.release_date) }}</td>
+                    <td></td>
 
                     <td>
                         <button

@@ -89,6 +89,17 @@ export class GamesService {
       throw err;
     }
   }
+  // ดึงข้อมูลเกมตาม ID เพื่อแสดงรายละเอียดเกม
+  async getGameById(id: number): Promise<GetGameResponse> {
+  const url = `${this.constants.API_ENDPOINT}/games/${id}`;
+  const token = localStorage.getItem('token') ?? '';
+  const headers = new HttpHeaders({
+    'Authorization': token ? `Bearer ${token}` : ''
+  });
+
+  return await lastValueFrom(this.http.get<GetGameResponse>(url, { headers }));
+}
+
 
 
 

@@ -27,7 +27,9 @@ export class HomeAdmin {
       name: ['', Validators.required],
       price: [0, Validators.required],
       genre: ['', Validators.required],
-      description: ['']
+      // description: ['']
+      
+
     });
   }
 
@@ -83,11 +85,11 @@ export class HomeAdmin {
   // เตรียมฟอร์มสำหรับแก้ไขเกม
   editGame(game: GetGameResponse) {
     this.editingGameId = game.id.toString();
-    this.gameForm.setValue({
+    this.gameForm.patchValue({
       name: game.name,
       price: game.price,
       genre: game.genre,
-      description: game.description
+      // description: game.description ?? '' // ถ้า null ให้เป็นค่าว่าง
     });
 
   }

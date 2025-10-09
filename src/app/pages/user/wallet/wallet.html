@@ -16,7 +16,8 @@
                     <div class="d-flex align-items-center gap-2">
                         <span
                             class="bg-black text-white px-2 py-1 rounded">100</span>
-                        <button class="btn">เติมเงิน</button>
+                        <button (click)="addMoney(100)"
+                            class="btn">เติมเงิน</button>
                     </div>
                 </div>
 
@@ -26,7 +27,8 @@
                     <div class="d-flex align-items-center gap-2">
                         <span
                             class="bg-black text-white px-2 py-1 rounded">200</span>
-                        <button class="btn btn-success">เติมเงิน</button>
+                        <button (click)="addMoney(200)"
+                            class="btn btn-success">เติมเงิน</button>
                     </div>
                 </div>
 
@@ -36,7 +38,8 @@
                     <div class="d-flex align-items-center gap-2">
                         <span
                             class="bg-black text-white px-2 py-1 rounded">500</span>
-                        <button class="btn btn-success">เติมเงิน</button>
+                        <button (click)="addMoney(500)"
+                            class="btn btn-success">เติมเงิน</button>
                     </div>
                 </div>
                 <div>
@@ -45,8 +48,17 @@
 
                 <!-- เติมเงินแบบกำหนดเอง -->
                 <div class="d-flex gap-2" style="width: 50%;">
-                    <input type="number" class="form-control">
-                    <button class="btn btn-success">เติมเงิน</button>
+                    <input
+                        type="number"
+                        class="form-control"
+                        [(ngModel)]="customAmount"
+                        placeholder="จำนวนเงิน"
+                        min="1">
+                    <button
+                        class="btn btn-success"
+                        (click)="addMoney(customAmount)">
+                        เติมเงิน
+                    </button>
                 </div>
 
             </div>

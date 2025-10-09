@@ -22,7 +22,7 @@ export const routes: Routes = [
   { path: 'profile', component: Profile },
  
   { path: 'collection', component: Collection },
-  { path: 'detail-game', component: DetailGame },
+  { path: 'detail-game/:id', component: DetailGame },
   { path: 'wallet', component: Wallet },
   { path: 'shopping', component: ShoppingCart },
   {

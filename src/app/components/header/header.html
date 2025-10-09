@@ -52,7 +52,7 @@
     </button>
     <button mat-menu-item>
 
-        <span>ประวัติการทำรายการ</span>
+        <span routerLink="history/buy-gram">ประวัติการทำรายการ</span>
     </button>
     <hr>
     <button mat-menu-item>
@@ -113,9 +113,8 @@
 
 <!-- Dropdown Menu -->
 <mat-menu #CategoryMenu="matMenu">
-    <button mat-menu-item><span>แอ็คชั่น</span></button>
-    <button mat-menu-item><span>ผจญภัย</span></button>
-    <button mat-menu-item><span>กีฬา</span></button>
-    <button mat-menu-item><span>กลยุทธ์</span></button>
+    <button mat-menu-item *ngFor="let genre of uniqueGenres">
+        <span>{{ genre }}</span>
+    </button>
 </mat-menu>
 <!-- content ด้านล่าง-->

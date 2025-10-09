@@ -79,6 +79,23 @@ export class Header {
     // สามารถ navigate ไปยังหน้าเกมได้ เช่น:
     // this.router.navigate(['/game', game.id]);
   }
+  
+  // ดึงรายชื่อ genre ที่ไม่ซ้ำกัน
+  get uniqueGenres(): string[] {
+    if (!this.games || this.games.length === 0) {
+      return [];
+    }
+    // ใช้ Set เพื่อเก็บค่าที่ไม่ซ้ำกัน
+    const genres = new Set<string>();
+    this.games.forEach(game => {
+      // ตรวจสอบและเพิ่ม genre ที่ไม่ซ้ำกันเข้าไปใน Set
+      if (game.genre) {
+        genres.add(game.genre);
+      }
+    });
+    // แปลง Set กลับไปเป็น Array เพื่อนำไปวนลูปใน HTML
+    return Array.from(genres);
+  }
 
   logout() {
     localStorage.removeItem('token');

@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './home.scss'
 })
 export class Home {
-   games: GetGameResponse[] = [];
+  games: GetGameResponse[] = [];
   loading = true;
 
   constructor(private router: Router, private gamesService: GamesService) { }
@@ -36,5 +36,10 @@ export class Home {
       this.loading = false;
     }
   }
+  // ไปที่หน้ารายละเอียดเกม
+  goToDetail(gameId: number) {
+  this.router.navigate(['/detail-game', gameId]);
+}
+
 
 }

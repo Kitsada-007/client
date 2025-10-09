@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink as RouterLink_1 } from '@angular/router';
+
 @Component({
   selector: 'app-profile',
   imports: [FormsModule, CommonModule, MatButtonModule, MatInputModule, RouterLink_1],
@@ -107,5 +108,7 @@ export class Profile {
       console.error('Error updating profile:', error);
     }
   }
+
+  
 
 }
