@@ -30,7 +30,8 @@ export class Header {
   constructor(
     private router: Router,
     private gamesService: GamesService,
-    private userService: UserService
+    private userService: UserService,
+    
   ) {}
 
   async ngOnInit() {

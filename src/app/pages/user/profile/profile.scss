@@ -1,12 +1,24 @@
-.card-login {
-  background-color: rgba(24, 26, 33, 1);
-  color: white;
-  
- 
+.card {
+  border-radius: 1rem;
 }
 
-input.form-control {
-    background-color: rgba(50, 53, 60, 1);
-    border: none;
-    color: white;
+img {
+  object-fit: cover;
 }
+
+.bg-secondary {
+  background-color: rgba(255,255,255,0.05) !important;
+}
+
+.category-card {
+  background-color: #495057;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.category-card:hover {
+  transform: scale(1.05);
+}
+

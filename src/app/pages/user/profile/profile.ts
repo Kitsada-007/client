@@ -92,6 +92,11 @@ export class Profile {
   }
 
   async EditProfile() {
+    const confirmed = confirm('คุณแน่ใจหรือไม่ว่าต้องการแก้ไขข้อมูล?');
+    if (!confirmed) {
+      return; // ยกเลิกถ้าไม่ยืนยัน
+    }
+
     try {
       const updatedData = {
         username: this.username,
@@ -105,7 +110,7 @@ export class Profile {
 
       this.username = response.username;
       this.email = response.email;
-
+      alert('แก้ไขโปรไฟล์สำเร็จ');
 
       window.location.reload();
     } catch (error) {
