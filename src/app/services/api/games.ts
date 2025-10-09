@@ -4,6 +4,10 @@ import { Constants } from '../../config/constants';
 import { lastValueFrom } from 'rxjs';
 import { GetGameResponse } from '../../models/response/get_game_res';
 import { GetGameRequest } from '../../models/request/get_game_req';
+import { GetTopGameResponse } from '../../models/response/get_top_res';
+
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -91,14 +95,35 @@ export class GamesService {
   }
   // ดึงข้อมูลเกมตาม ID เพื่อแสดงรายละเอียดเกม
   async getGameById(id: number): Promise<GetGameResponse> {
-  const url = `${this.constants.API_ENDPOINT}/games/${id}`;
-  const token = localStorage.getItem('token') ?? '';
-  const headers = new HttpHeaders({
-    'Authorization': token ? `Bearer ${token}` : ''
-  });
+    const url = `${this.constants.API_ENDPOINT}/games/${id}`;
+    const token = localStorage.getItem('token') ?? '';
+    const headers = new HttpHeaders({
+      'Authorization': token ? `Bearer ${token}` : ''
+    });
 
-  return await lastValueFrom(this.http.get<GetGameResponse>(url, { headers }));
-}
+    return await lastValueFrom(this.http.get<GetGameResponse>(url, { headers }));
+  }
+
+
+  // ดึง Top เกม
+  public async getTopGame(): Promise<GetTopGameResponse> {
+    const url = `${this.constants.API_ENDPOINT}/games/top`;
+    const token = localStorage.getItem('token') ?? '';
+    const headers = new HttpHeaders({
+      'Authorization': token ? `Bearer ${token}` : ''
+    });
+
+    try {
+      const response = await lastValueFrom(
+        this.http.get<GetTopGameResponse>(url, { headers })
+      );
+      return response;
+    } catch (error) {
+      console.error('โหลด Top เกมไม่สำเร็จ:', error);
+      throw error;
+    }
+  }
+
 
 
 

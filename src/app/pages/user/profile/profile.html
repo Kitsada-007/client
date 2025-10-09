@@ -6,7 +6,7 @@
                 <!-- ส่วนโปรไฟล์: รูป + ชื่อ + อีเมล -->
                 <div class="d-flex align-items-center mb-4">
                     <!-- รูปโปรไฟล์ -->
-                    <div class="me-4 text-center">
+                    <div class="me-4 text-center position-relative">
                         <img
                             [src]="user?.profile_image || 'assets/Images/user.png'"
                             alt="profile" width="150" height="150"
@@ -14,6 +14,16 @@
                             (click)="fileInput.click()">
                         <input type="file" #fileInput style="display: none;"
                             (change)="onFileSelected($event)">
+
+                        <!-- loader overlay -->
+                        <div *ngIf="loadingProfile"
+                            class="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
+                            style="background: rgba(0,0,0,0.5); border-radius: 0.25rem;">
+                            <div class="spinner-border text-light"
+                                role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- ชื่อผู้ใช้และอีเมล -->

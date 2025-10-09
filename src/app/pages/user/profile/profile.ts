@@ -25,6 +25,7 @@ export class Profile {
   username: string = '';
   @ViewChild('fileInput') fileInput!: ElementRef;
   selectedFile?: File;
+  loadingProfile = false;
 
   constructor(
     private router: Router,
@@ -70,6 +71,7 @@ export class Profile {
       alert('คุณยังไม่ได้เข้าสู่ระบบ');
       return;
     }
+    this.loadingProfile = true;
 
     try {
       const response: any = await this.userService.uploadProfile(
@@ -84,6 +86,8 @@ export class Profile {
     } catch (err) {
       console.error('Upload failed', err);
       alert('อัปโหลดรูปโปรไฟล์ล้มเหลว');
+    } finally {
+      this.loadingProfile = false; // โหลดเสร็จ หยุดหมุน
     }
   }
 
@@ -109,6 +113,6 @@ export class Profile {
     }
   }
 
-  
+
 
 }
