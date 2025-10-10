@@ -8,22 +8,28 @@ import { GamesService } from '../../../services/api/games';
 import { CommonModule } from '@angular/common';
 import { GetGameRequest } from '../../../models/request/get_game_req';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { GetProfileResponse } from '../../../models/response/get_profile_res';
+import { UserService } from '../../../services/api/user';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+
 
 
 @Component({
   selector: 'app-home-admin',
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule, CommonModule, ReactiveFormsModule],
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule, CommonModule, ReactiveFormsModule, RouterLink, RouterLinkActive],
   templateUrl: './home-admin.html',
   styleUrl: './home-admin.scss'
 })
 export class HomeAdmin {
   games: GetGameResponse[] = [];
+  admin?: GetProfileResponse;
   loading = true;
   gameForm: FormGroup;
   editingGameId: string | null = null;
   genres: string[] = ['Action', 'Adventure', 'RPG', 'Strategy', 'Sports', 'Simulation', 'Horror', 'Racing'];
 
-  constructor(private gamesService: GamesService, private fb: FormBuilder) {
+  constructor(private gamesService: GamesService, private fb: FormBuilder, private router: Router, private userService: UserService) {
     this.gameForm = this.fb.group({
       name: ['', Validators.required],
       price: [0, Validators.required],
@@ -32,8 +38,22 @@ export class HomeAdmin {
     });
   }
 
+
   async ngOnInit(): Promise<void> {
     await this.loadGames();
+     const token = localStorage.getItem('token');
+      if (!token) {
+        this.router.navigate(['/login']);
+        return;
+      }
+  
+      try {
+        this.admin = await this.userService.getUser();
+        console.log('User loaded:', this.admin);
+      } catch (err) {
+        console.error('Failed to load user', err);
+        this.router.navigate(['/login']);
+      }
   }
 
   async loadGames() {
@@ -113,5 +133,10 @@ export class HomeAdmin {
       console.error('ลบเกมไม่สำเร็จ:', err);
       alert('ลบเกมไม่สำเร็จ!');
     }
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 }

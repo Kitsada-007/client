@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RouterOutlet, NavigationEnd, Router } from '@angular/router';
+import { RouterOutlet, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Header } from "./components/header/header";
 
@@ -21,7 +21,7 @@ export class App {
       .subscribe((event: any) => {
         const currentUrl = event.urlAfterRedirects;
         this.isLoginOrRegisterPage =
-          currentUrl.includes('login') || currentUrl.includes('register') || currentUrl.includes('home-admin');
+          currentUrl.includes('login') || currentUrl.includes('register') || currentUrl.includes('home-admin') || currentUrl.includes('profile-admin') || currentUrl.includes('transaction');
       });
   }
 }

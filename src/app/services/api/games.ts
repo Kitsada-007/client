@@ -7,8 +7,6 @@ import { GetGameRequest } from '../../models/request/get_game_req';
 import { GetTopGameResponse } from '../../models/response/get_top_res';
 
 
-
-
 @Injectable({
   providedIn: 'root'
 })

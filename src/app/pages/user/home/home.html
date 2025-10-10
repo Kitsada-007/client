@@ -50,20 +50,22 @@
     <div class="game-carousel-wrapper w-100" style="max-width: 900px;">
         <h5 class="mb-3">เปิดหาจากหมวดหมู่</h5>
 
-        <div id="categoryCarousel" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div 
-      class="carousel-item" 
-      *ngFor="let genreChunk of genreChunks; let i = index" 
-      [class.active]="i === 0">
-      
-      <div class="d-flex gap-4">
-        <div class="category-card" *ngFor="let genre of genreChunk">
-          {{ genre }}
-        </div>
-      </div>
-    </div>
-  </div>
+        <div id="categoryCarousel" class="carousel slide"
+            data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div
+                    class="carousel-item"
+                    *ngFor="let genreChunk of genreChunks; let i = index"
+                    [class.active]="i === 0">
+
+                    <div class="d-flex gap-4">
+                        <div class="category-card"
+                            *ngFor="let genre of genreChunk">
+                            {{ genre }}
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- ปุ่มเลื่อนแบบอันแรก -->
             <button class="carousel-control-prev custom-btn" type="button"

@@ -12,6 +12,7 @@ import { BuyGram } from './pages/user/history/buy-gram/buy-gram';
 import { HomeAdmin } from './pages/admin/home-admin/home-admin';
 import { ProfileAdmin } from './pages/admin/profile-admin/profile-admin';
 import { Wallet } from './pages/user/wallet/wallet';
+import { Transaction } from './pages/admin/home-admin/transaction/transaction';
 
 
 export const routes: Routes = [
@@ -35,7 +36,7 @@ export const routes: Routes = [
   // admin-path
   {
     path: 'home-admin',component: HomeAdmin,
-
   },
+  {path: 'transaction', component: Transaction},
   { path: 'profile-admin', component: ProfileAdmin },
 ];
