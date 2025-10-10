@@ -124,6 +124,24 @@ export class GamesService {
     }
   }
 
+  // อัปโหลดรูปภาพเกม (สำหรับแอดมิน)
+  // async uploadGameImages(gameId: string, files: File[]): Promise<string[]> {
+  //   const formData = new FormData();
+  //   files.forEach(f => formData.append('images', f));
+
+  //   const url = `${this.constants.API_ENDPOINT}/admin/upload-multiple/${gameId}`;
+  //   const token = localStorage.getItem('token') || '';
+
+  //   const headers = { Authorization: `Bearer ${token}` };
+
+  //   const response = await lastValueFrom(
+  //     this.http.post<{ urls: string[] }>(url, formData, { headers })
+  //   );
+
+  //   return response.urls;
+  // }
+
+
 
 
 

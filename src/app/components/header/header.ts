@@ -59,6 +59,7 @@ export class Header {
     if (!term) {
       // ถ้าไม่พิมพ์อะไร ให้โชว์ featured games
       this.displayedGames = [...this.featuredGames];
+      console.log();
     } else {
       this.displayedGames = this.games.filter(
         g => g.name.toLowerCase().includes(term) || g.genre.toLowerCase().includes(term)
@@ -78,7 +79,7 @@ export class Header {
     this.searchTerm = game.name;
     this.showPopup = false;
     // สามารถ navigate ไปยังหน้าเกมได้ เช่น:
-    // this.router.navigate(['/game', game.id]);
+    this.router.navigate(['/detail-game', game.id]);
   }
   
   // ดึงรายชื่อ genre ที่ไม่ซ้ำกัน
