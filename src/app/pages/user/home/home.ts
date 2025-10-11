@@ -68,7 +68,7 @@ export class Home {
   // ไปหน้า หมวดหมู่ ตามที่กด
   goToCategory(genre: string) {
   
-  this.router.navigate(['/category',genre]);
+  this.router.navigate(['/typegame',genre]);
 }
 
 

@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { GamesService } from '../../../services/api/games';
 import { ActivatedRoute } from '@angular/router';
 import { GetGameResponse } from '../../../models/response/get_game_res';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-typegame',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './typegame.html',
   styleUrl: './typegame.scss'
 })

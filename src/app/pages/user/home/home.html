@@ -64,7 +64,8 @@
 
                     <div class="d-flex gap-4">
                         <div class="category-card"
-                            *ngFor="let genre of genreChunk">
+                            *ngFor="let genre of genreChunk"
+                            (click)="goToCategory(genre)">
                             {{ genre }}
                         </div>
                     </div>
