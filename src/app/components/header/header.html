@@ -9,11 +9,11 @@
 
         <!-- ปุ่มลูกศร + ลิงก์ -->
         <div class="d-flex align-items-center gap-3">
-            <button mat-icon-button>
+            <button (click)="goBack();" mat-icon-button>
                 <mat-icon
                     style="color: rgba(143, 152, 160, 1);">arrow_back</mat-icon>
             </button>
-            <button mat-icon-button>
+            <button (click)="goForward();" mat-icon-button>
                 <mat-icon
                     style="color: rgba(143, 152, 160, 1);">arrow_forward</mat-icon>
             </button>
@@ -114,8 +114,8 @@
 
 <!-- Dropdown Menu -->
 <mat-menu #CategoryMenu="matMenu">
-    <button mat-menu-item *ngFor="let genre of uniqueGenres">
-        <span>{{ genre }}</span>
+    <button (click)="goToCategory(genre)" mat-menu-item *ngFor="let genre of uniqueGenres">
+        <span>{{ genre }} </span>
     </button>
 </mat-menu>
 <!-- content ด้านล่าง-->

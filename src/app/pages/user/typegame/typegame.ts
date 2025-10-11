@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { GamesService } from '../../../services/api/games';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GetGameResponse } from '../../../models/response/get_game_res';
 import { CommonModule } from '@angular/common';
 
@@ -11,18 +11,29 @@ import { CommonModule } from '@angular/common';
   styleUrl: './typegame.scss'
 })
 export class Typegame {
-   genre!: string;
+  genre!: string;
   games: GetGameResponse[] = [];
   loading = true;
 
-  constructor(private route: ActivatedRoute, private gamesService: GamesService) {}
+  private currentGenre: string = ''; // เก็บ genre ปัจจุบัน
+
+  constructor(private route: ActivatedRoute, private gamesService: GamesService, private router:Router) { }
 
   ngOnInit() {
-    this.genre = decodeURIComponent(this.route.snapshot.paramMap.get('genre') || '');
-    this.loadGames();
+    this.route.params.subscribe(params => {
+      const newGenre = decodeURIComponent(params['genre'] || '');
+
+      // ถ้า genre เปลี่ยนจริงๆ ถึงโหลดเกมใหม่
+      if (newGenre !== this.currentGenre) {
+        this.currentGenre = newGenre;
+        this.genre = newGenre;
+        this.loadGames();
+      }
+    });
   }
 
   async loadGames() {
+    this.loading = true;
     try {
       const allGames = await this.gamesService.getGameAll();
       this.games = allGames.filter(g => g.genre === this.genre);
@@ -34,7 +45,6 @@ export class Typegame {
   }
 
   goToDetail(gameId: number) {
-    // ไปหน้า Detail Game
-    window.location.href = `/detail-game/${gameId}`;
+    this.router.navigate(['/detail-game', gameId]);
   }
 }

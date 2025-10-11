@@ -10,6 +10,8 @@ import { GamesService } from '../../services/api/games';
 import { GetGameResponse } from '../../models/response/get_game_res';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-header',
@@ -31,8 +33,8 @@ export class Header {
     private router: Router,
     private gamesService: GamesService,
     private userService: UserService,
-    
-  ) {}
+    private location: Location
+  ) { }
 
   async ngOnInit() {
     const token = localStorage.getItem('token');
@@ -81,7 +83,7 @@ export class Header {
     // สามารถ navigate ไปยังหน้าเกมได้ เช่น:
     this.router.navigate(['/detail-game', game.id]);
   }
-  
+
   // ดึงรายชื่อ genre ที่ไม่ซ้ำกัน
   get uniqueGenres(): string[] {
     if (!this.games || this.games.length === 0) {
@@ -97,11 +99,27 @@ export class Header {
     });
     // แปลง Set กลับไปเป็น Array เพื่อนำไปวนลูปใน HTML
     return Array.from(genres);
+
   }
 
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
+
+  goBack() {
+    this.location.back();
+  }
+
+  goForward() {
+    this.location.forward();
+  }
+  // ไปยัง หมวดหมู่เกม
+  goToCategory(genre: string) {
+    this.router.navigate(['/typegame', genre],
+       {
+    });
+  }
+
 }
 

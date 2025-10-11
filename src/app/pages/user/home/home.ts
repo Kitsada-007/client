@@ -67,9 +67,9 @@ export class Home {
   }
   // ไปหน้า หมวดหมู่ ตามที่กด
   goToCategory(genre: string) {
-  
-  this.router.navigate(['/typegame',genre]);
-}
+
+    this.router.navigate(['/typegame', genre]);
+  }
 
 
   getTopGameImage(game: Datum): string {
@@ -79,6 +79,7 @@ export class Home {
     const urls = game.images.split(',').map(u => u.trim());
     return urls[0] || 'assets/Images/no-image.png';
   }
+
 
 
 }
