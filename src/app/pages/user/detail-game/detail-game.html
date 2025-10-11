@@ -38,7 +38,10 @@
             {{ game?.release_date ? formatThaiDate(game?.release_date) : '-' }}
           </p>
 
-          <p><strong>จัดอันดับยอดขาย:</strong> #{{ game?.total_sales }}</p>
+          <p><strong>จัดอันดับยอดขาย:</strong>
+            {{ gameRanking ? '#' + gameRanking : 'ไม่ติดอันดับ' }}
+          </p>
+
           <p><strong>ประเภทเกม:</strong>
             <span class="badge bg-secondary me-1"> {{ game?.genre }}</span>
           </p>

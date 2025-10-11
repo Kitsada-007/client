@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { GetGameResponse } from '../../../models/response/get_game_res';
 import { GamesService } from '../../../services/api/games';
 import { CommonModule, DatePipe } from '@angular/common';
+import { Datum } from '../../../models/response/get_top_res';
 
 @Component({
   selector: 'app-detail-game',
@@ -15,24 +16,46 @@ export class DetailGame {
   game: GetGameResponse | null = null;
   loading = true;
   selectedImage: string | null = null;
+  topGames: Datum[] = [];
+  gameRanking: number | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private gamesService: GamesService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.gameId = Number(this.route.snapshot.paramMap.get('id'));
-    this.loadGame();
+    await this.loadTopGames(); // โหลด TopGames ก่อน
+    await this.loadGame();     // โหลดเกมปัจจุบัน
+  }
+
+  async loadTopGames() {
+    try {
+      const response = await this.gamesService.getTopGame();
+      if (response.success) {
+        this.topGames = response.data; // เรียงมาแล้วจาก backend
+      }
+    } catch (err) {
+      console.error('โหลด Top เกมไม่สำเร็จ:', err);
+    }
   }
 
   async loadGame() {
+    this.loading = true;
     try {
       const data = await this.gamesService.getGameById(this.gameId);
       this.game = data;
+
+      // เลือกรูปแรกถ้ามี
       if (this.game.images && this.game.images.length > 0) {
         this.selectedImage = this.game.images[0];
       }
+
+      // หา ranking จาก TopGames
+      const top = this.topGames.find(g => g.id === this.game!.id);
+      this.gameRanking = top ? top.ranking : null;
+
     } catch (error) {
       console.error('โหลดข้อมูลเกมไม่สำเร็จ', error);
     } finally {
@@ -52,5 +75,4 @@ export class DetailGame {
     const year = d.getFullYear() + 543;
     return `${day}/${month}/${year}`;
   }
-
 }

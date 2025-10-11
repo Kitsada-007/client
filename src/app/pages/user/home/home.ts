@@ -53,14 +53,13 @@ export class Home {
     try {
       const response = await this.gamesService.getTopGame();
       if (response.success) {
-        this.topGames = response.data
-          .sort((a, b) => a.ranking - b.ranking)
-          .slice(0, 5);
+        this.topGames = response.data.slice(0, 5);
       }
     } catch (err) {
       console.error('โหลด Top เกมไม่สำเร็จ:', err);
     }
   }
+
   // ไปหน้า Details ตามไอดีที่กด
   goToDetail(gameId: number) {
     this.router.navigate(['/detail-game', gameId]);
