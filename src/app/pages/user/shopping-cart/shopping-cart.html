@@ -1,1 +1,45 @@
-<p>shopping-cart works!</p>
+<div class="container mt-5 text-light rounded">
+    <div class="text-center">
+        <h4 class="card-title"> รถเข็นของคุณ</h4>
+    </div>
+    <div class="mb-2 ms-5 me-5">
+        <p class="card-text">จำนวน 2 รายการ</p>
+    </div>
+    <div class="row g-4 me-5 ms-5">
+        <!-- ฝั่งซ้าย: รายการสินค้า -->
+        <div class="col-md-7">
+            <div class="card bg-color text-light">
+                <div class="card-body">
+
+                    <hr class="border-light">
+
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div>
+                            <strong>Little Nightmares II</strong><br>
+                            <small class="text-muted">แนวเกม: Horror / Puzzle</small>
+                        </div>
+                        <div>฿1000</div>
+                    </div>
+
+                    <a href="#" class="link-danger text-decoration-none">ลบ</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ฝั่งขวา: สรุปยอด -->
+        <div class="col-md-5">
+            <div class="card bg-color text-light">
+                <div class="card-body">
+                    <h5 class="card-title">สรุปคำสั่งซื้อ</h5>
+                    <p class="card-text">ราคารวมโดยประมาณ: <strong>฿1000</strong></p>
+                    <div class="mb-3">
+                        <label for="coupon" class="form-label">รหัสคูปอง</label>
+                        <input id="coupon" type="text" class="form-control" placeholder="ใส่รหัสคูปอง">
+                    </div>
+                    <p class="card-text">ราคารวมหลังใช้คูปอง: <strong>฿1000</strong></p>
+                    <button class="btn btn-primary w-100">ชำระเงิน</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
