@@ -95,7 +95,7 @@
                 <div *ngFor="let game of displayedGames"
                     class="d-flex align-items-center p-2 hover-bg"
                     (mousedown)="selectGame(game)">
-                    <!-- <img [src]="game.imageUrl" alt="{{game.name}}" style="width: 50px; height: 50px; object-fit: cover;" class="me-2 rounded"> -->
+                    <img [src]="game.images" alt="{{game.name}}" style="width: 50px; height: 50px; object-fit: cover;" class="me-2 rounded">
                     <div>
                         <div>{{ game.name }}</div>
                         <small class="text-white">{{ game.price }}</small>

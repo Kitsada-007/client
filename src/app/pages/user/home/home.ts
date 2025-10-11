@@ -61,8 +61,24 @@ export class Home {
       console.error('โหลด Top เกมไม่สำเร็จ:', err);
     }
   }
-
+  // ไปหน้า Details ตามไอดีที่กด
   goToDetail(gameId: number) {
     this.router.navigate(['/detail-game', gameId]);
   }
+  // ไปหน้า หมวดหมู่ ตามที่กด
+  goToCategory(genre: string) {
+  
+  this.router.navigate(['/category',genre]);
+}
+
+
+  getTopGameImage(game: Datum): string {
+    if (!game.images) return 'assets/Images/no-image.png';
+
+    // ถ้าเป็น string ที่มีหลาย URL คั่นด้วย comma
+    const urls = game.images.split(',').map(u => u.trim());
+    return urls[0] || 'assets/Images/no-image.png';
+  }
+
+
 }

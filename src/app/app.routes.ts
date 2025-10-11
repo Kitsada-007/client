@@ -13,6 +13,7 @@ import { HomeAdmin } from './pages/admin/home-admin/home-admin';
 import { ProfileAdmin } from './pages/admin/profile-admin/profile-admin';
 import { Wallet } from './pages/user/wallet/wallet';
 import { Transaction } from './pages/admin/home-admin/transaction/transaction';
+import { Typegame } from './pages/user/typegame/typegame';
 
 
 export const routes: Routes = [
@@ -39,4 +40,5 @@ export const routes: Routes = [
   },
   {path: 'transaction', component: Transaction},
   { path: 'profile-admin', component: ProfileAdmin },
+  {path: 'typegame/:genre', component: Typegame}
 ];

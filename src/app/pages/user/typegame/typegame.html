@@ -1,0 +1,22 @@
+<div class="container my-4 text-white">
+  <h2>หมวดหมู่ {{ genre }}</h2>
+
+  <div *ngIf="loading">กำลังโหลด...</div>
+
+  <div class="row g-3" *ngIf="!loading">
+    <div class="col-md-4" *ngFor="let game of games">
+      <div class="card bg-dark text-white h-100">
+        <img
+          [src]="game.images && game.images.length > 0 ? game.images[0] : 'assets/Images/no-image.png'"
+          class="card-img-top"
+          style="height:200px; object-fit:cover;"
+          alt="Game Image"
+          (click)="goToDetail(game.id)">
+        <div class="card-body">
+          <h5>{{ game.name }}</h5>
+          <p>{{ game.price }} บาท</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
