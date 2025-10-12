@@ -1,43 +1,4 @@
-<mat-toolbar class="toolbar d-flex justify-content-between align-items-center px-3">
-
-  <div class="d-flex flex-column align-items-start">
-    <img src="assets/Images/logo.png" alt="logo" width="75px" class="mb-2">
-
-    <div class="d-flex align-items-center gap-3">
-      <button mat-icon-button>
-        <mat-icon style="color: rgba(143, 152, 160, 1);">arrow_back</mat-icon>
-      </button>
-      <button mat-icon-button>
-        <mat-icon style="color: rgba(143, 152, 160, 1);">arrow_forward</mat-icon>
-      </button>
-
-      <a routerLink="/home-admin" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">ข้อมูลเกมทั้งหมด</a>
-      <a routerLink="/transaction" routerLinkActive="active-link">ประวัติทำธุระกรรมผู้ใช้</a>
-      <a routerLink="/create-discount" routerLinkActive="active-link">สร้างโค้ดส่วนลด</a>
-    </div>
-  </div>
-
-  <div class="d-flex align-items-center gap-2 me-4">
-    <button mat-button [matMenuTriggerFor]="userMenu" style="background-color: rgb(41, 44, 49); border-radius: 5px;">
-      <img [src]="admin?.profile_image || 'assets/Images/user.png'" alt="avatar" width="40" height="32"
-           style="border-radius: 5px; margin-right: 8px;">
-      <span style="color: #1e88e5; margin-right: 8px;">{{admin?.username}}</span>
-      <mat-icon style="color: #1e88e5;">keyboard_arrow_down</mat-icon>
-    </button>
-  </div>
-
-  <mat-menu #userMenu="matMenu">
-    <button mat-menu-item>
-      <span routerLink="/profile-admin">ดูโปรไฟล์ของฉัน</span>
-    </button>
-    <hr>
-    <button mat-menu-item>
-      <span (click)="logout()">ออกจากบัญชี</span>
-    </button>
-  </mat-menu>
-</mat-toolbar>
-
-<!-- เนื้อหาหลัก -->
+<app-header-admin></app-header-admin>
 <div class="container my-5 text-white">
     <div class="card mx-auto p-4 shadow-lg"
         style="max-width: 700px; background-color: rgba(23, 29, 37, 1); border: none;">
@@ -46,21 +7,18 @@
         <form [formGroup]="gameForm" (ngSubmit)="submitGame()">
             <div class="mb-3">
                 <label class="form-label">ชื่อเกม</label>
-                <input type="text" class="form-control text-white border-0"
-                    formControlName="name">
+                <input type="text" class="form-control text-white border-0" formControlName="name">
             </div>
 
             <div class="mb-3">
                 <label class="form-label">ราคา</label>
-                <input type="number" class="form-control text-white border-0"
-                    formControlName="price">
+                <input type="number" class="form-control text-white border-0" formControlName="price">
             </div>
 
             <div class="mb-3">
                 <label class="form-label">ประเภท</label>
                 <div class="custom-select-wrapper">
-                    <select style="background-color: rgba(50, 53, 60, 1);"
-                        class="form-select text-white  border-0"
+                    <select style="background-color: rgba(50, 53, 60, 1);" class="form-select text-white  border-0"
                         formControlName="genre">
                         <option value disabled selected>-- เลือกประเภทเกม
                             --</option>
@@ -72,8 +30,7 @@
 
             <div class="mb-3">
                 <label class="form-label">รายละเอียด</label>
-                <textarea class="form-control text-white border-0" rows="4"
-                    formControlName="description"></textarea>
+                <textarea class="form-control text-white border-0" rows="4" formControlName="description"></textarea>
             </div>
 
             <div class="text-center mt-3">
@@ -82,11 +39,7 @@
                 </button>
 
                 <!-- ปุ่มยกเลิก -->
-                <button
-                    type="button"
-                    class="btn btn-secondary px-4 ms-2"
-                    *ngIf="editingGameId"
-                    (click)="cancelEdit()">
+                <button type="button" class="btn btn-secondary px-4 ms-2" *ngIf="editingGameId" (click)="cancelEdit()">
                     ยกเลิก
                 </button>
             </div>
@@ -106,8 +59,7 @@
 
     <!-- ตารางรายการเกม -->
     <div *ngIf="!loading" class="table-responsive">
-        <table class="table table-dark table-bordered align-middle text-center"
-            style="background-color: #1b263b;">
+        <table class="table table-dark table-bordered align-middle text-center" style="background-color: #1b263b;">
             <thead class="align-middle">
                 <tr>
                     <th style="width: 80px;">รูป</th>
@@ -123,10 +75,8 @@
             <tbody>
                 <tr *ngFor="let game of games">
                     <td>
-                        <img
-                            [src]="game.images && game.images.length > 0 ? game.images[0] : 'https://via.placeholder.com/70'"
-                            alt="cover"
-                            style="width:70px; height:70px; object-fit:cover; border-radius:5px;">
+                        <img [src]="game.images && game.images.length > 0 ? game.images[0] : 'https://via.placeholder.com/70'"
+                            alt="cover" style="width:70px; height:70px; object-fit:cover; border-radius:5px;">
                     </td>
 
                     <td>{{ game.name }}</td>
@@ -137,15 +87,11 @@
                     <td>{{ formatThaiDate(game.release_date) }}</td>
 
                     <td>
-                        <button
-                            class="btn btn-primary btn-sm me-2"
-                            (click)="editGame(game)">
+                        <button class="btn btn-primary btn-sm me-2" (click)="editGame(game)">
                             แก้ไข
                         </button>
 
-                        <button
-                            (click)="removeGame(game)"
-                            class="btn btn-danger btn-sm">
+                        <button (click)="removeGame(game)" class="btn btn-danger btn-sm">
                             ลบ
                         </button>
                     </td>

@@ -53,6 +53,18 @@ public async editUserProfile(userData: Partial<UserReq>): Promise<UserReq> {
 
   return res;
 }
+   public async getUsers(): Promise<GetProfileResponse[]> {
+    const token = localStorage.getItem('token');
+    if (!token) throw new Error('Token not found');
+
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+    const url = this.constants.API_ENDPOINT + '/admin/users';
+
+    const res = await lastValueFrom(this.http.get<GetProfileResponse[]>(url, { headers }));
+    console.log('API response:', res);
+
+    return res; 
+  }
 
 
 }

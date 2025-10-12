@@ -6,19 +6,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { GetProfileResponse } from '../../../../models/response/get_profile_res';
-import { GamesService } from '../../../../services/api/games';
-import { UserService } from '../../../../services/api/user';
+import { GetProfileResponse } from '../../models/response/get_profile_res';
+import { GamesService } from '../../services/api/games';
+import { UserService } from '../../services/api/user';
 import { RouterLinkActive } from '@angular/router';
-import { HeaderAdmin } from "../../../../components/header-admin/header-admin";
 @Component({
-  selector: 'app-transaction',
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule, CommonModule, ReactiveFormsModule, RouterLink, RouterLinkActive, HeaderAdmin],
-  templateUrl: './transaction.html',
-  styleUrl: './transaction.scss'
+  selector: 'app-header-admin',
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule, CommonModule, ReactiveFormsModule, RouterLink, RouterLinkActive],
+  templateUrl: './header-admin.html',
+  styleUrl: './header-admin.scss'
 })
-export class Transaction {
-  users?: GetProfileResponse[];
+export class HeaderAdmin {
+admin?: GetProfileResponse;
   constructor(private gamesService: GamesService, private fb: FormBuilder, private router: Router, private userService: UserService) { }
   async ngOnInit(): Promise<void> {
     const token = localStorage.getItem('token');
@@ -28,12 +27,15 @@ export class Transaction {
     }
 
     try {
-      this.users = await this.userService.getUsers();
-      console.log('User loaded:', this.users);
+      this.admin = await this.userService.getUser();
+      console.log('User loaded:', this.admin);
     } catch (err) {
       console.error('Failed to load user', err);
       this.router.navigate(['/login']);
     }
   }
-
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
 }

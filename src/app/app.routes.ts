@@ -13,6 +13,7 @@ import { HomeAdmin } from './pages/admin/home-admin/home-admin';
 import { ProfileAdmin } from './pages/admin/profile-admin/profile-admin';
 import { Wallet } from './pages/user/wallet/wallet';
 import { Transaction } from './pages/admin/home-admin/transaction/transaction';
+import { HistoryView } from './pages/admin/home-admin/history-view/history-view';
 
 
 export const routes: Routes = [
@@ -39,4 +40,5 @@ export const routes: Routes = [
   },
   {path: 'transaction', component: Transaction},
   { path: 'profile-admin', component: ProfileAdmin },
+  { path: 'historys/:id', component: HistoryView}
 ];
