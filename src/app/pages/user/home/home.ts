@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { GamesService } from '../../../services/api/games';
 import { GetGameResponse } from '../../../models/response/get_game_res';
 import { CommonModule } from '@angular/common';
-import { Datum, GetTopGameResponse } from '../../../models/response/get_top_res';
 @Component({
   selector: 'app-home',
   imports: [MatButtonModule, MatIconModule, MatMenuModule, MatToolbarModule, CommonModule],
@@ -16,7 +15,7 @@ import { Datum, GetTopGameResponse } from '../../../models/response/get_top_res'
 })
 export class Home {
   games: GetGameResponse[] = [];
-  topGames: Datum[] = [];
+  topGames: GetGameResponse[] = [];
   genreChunks: string[][] = [];
   loading = true;
 
@@ -51,34 +50,24 @@ export class Home {
 
   async loadTopGames() {
     try {
-      const response = await this.gamesService.getTopGame();
-      if (response.success) {
-        this.topGames = response.data.slice(0, 5);
-      }
+      const allGames = await this.gamesService.getGameAll();
+      // จัดอันดับ topGames จาก total_sales
+      this.topGames = allGames.sort((a, b) => b.total_sales - a.total_sales).slice(0, 5);
     } catch (err) {
       console.error('โหลด Top เกมไม่สำเร็จ:', err);
     }
   }
 
-  // ไปหน้า Details ตามไอดีที่กด
   goToDetail(gameId: number) {
     this.router.navigate(['/detail-game', gameId]);
   }
-  // ไปหน้า หมวดหมู่ ตามที่กด
-  goToCategory(genre: string) {
 
+  goToCategory(genre: string) {
     this.router.navigate(['/typegame', genre]);
   }
 
-
-  getTopGameImage(game: Datum): string {
-    if (!game.images) return 'assets/Images/no-image.png';
-
-    // ถ้าเป็น string ที่มีหลาย URL คั่นด้วย comma
-    const urls = game.images.split(',').map(u => u.trim());
-    return urls[0] || 'assets/Images/no-image.png';
+  getGameImage(game: GetGameResponse): string {
+    if (!game.images || game.images.length === 0) return 'assets/Images/no-image.png';
+    return game.images[0];
   }
-
-
-
 }

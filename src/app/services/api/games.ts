@@ -122,25 +122,30 @@ export class GamesService {
       throw error;
     }
   }
+  // upload image game
+  async uploadGameImages(gameId: string, files: File[]) {
+    const formData = new FormData();
+    files.forEach(file => formData.append('images', file)); // ชื่อ field ต้องตรงกับ backend ('images')
 
-  
+    const token = localStorage.getItem('token') || '';
+    const headers = { Authorization: `Bearer ${token}` };
 
-  // อัปโหลดรูปภาพเกม (สำหรับแอดมิน)
-  // async uploadGameImages(gameId: string, files: File[]): Promise<string[]> {
-  //   const formData = new FormData();
-  //   files.forEach(f => formData.append('images', f));
+    try {
+      const url = `${this.constants.API_ENDPOINT}/admin/upload-multiple/${gameId}`;
+      const response = await lastValueFrom(this.http.post<{ urls: string[] }>(url, formData, { headers }));
+      console.log('Upload success:', response.urls);
+      return response.urls;
+    } catch (err) {
+      console.error('Upload failed:', err);
+      throw err;
+    }
+  }
 
-  //   const url = `${this.constants.API_ENDPOINT}/admin/upload-multiple/${gameId}`;
-  //   const token = localStorage.getItem('token') || '';
 
-  //   const headers = { Authorization: `Bearer ${token}` };
 
-  //   const response = await lastValueFrom(
-  //     this.http.post<{ urls: string[] }>(url, formData, { headers })
-  //   );
 
-  //   return response.urls;
-  // }
+
+
 
 
 

@@ -1,40 +1,49 @@
-<mat-toolbar class="toolbar d-flex justify-content-between align-items-center px-3">
+<mat-toolbar
+    class="toolbar d-flex justify-content-between align-items-center px-3">
 
-  <div class="d-flex flex-column align-items-start">
-    <img src="assets/Images/logo.png" alt="logo" width="75px" class="mb-2">
+    <div class="d-flex flex-column align-items-start">
+        <img src="assets/Images/logo.png" alt="logo" width="75px" class="mb-2">
 
-    <div class="d-flex align-items-center gap-3">
-      <button mat-icon-button>
-        <mat-icon style="color: rgba(143, 152, 160, 1);">arrow_back</mat-icon>
-      </button>
-      <button mat-icon-button>
-        <mat-icon style="color: rgba(143, 152, 160, 1);">arrow_forward</mat-icon>
-      </button>
+        <div class="d-flex align-items-center gap-3">
+            <button mat-icon-button>
+                <mat-icon
+                    style="color: rgba(143, 152, 160, 1);">arrow_back</mat-icon>
+            </button>
+            <button mat-icon-button>
+                <mat-icon
+                    style="color: rgba(143, 152, 160, 1);">arrow_forward</mat-icon>
+            </button>
 
-      <a routerLink="/home-admin" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">ข้อมูลเกมทั้งหมด</a>
-      <a routerLink="/transaction" routerLinkActive="active-link">ประวัติทำธุระกรรมผู้ใช้</a>
-      <a routerLink="/create-discount" routerLinkActive="active-link">สร้างโค้ดส่วนลด</a>
+            <a routerLink="/home-admin" routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{ exact: true }">ข้อมูลเกมทั้งหมด</a>
+            <a routerLink="/transaction"
+                routerLinkActive="active-link">ประวัติทำธุระกรรมผู้ใช้</a>
+            <a routerLink="/create-discount"
+                routerLinkActive="active-link">สร้างโค้ดส่วนลด</a>
+        </div>
     </div>
-  </div>
 
-  <div class="d-flex align-items-center gap-2 me-4">
-    <button mat-button [matMenuTriggerFor]="userMenu" style="background-color: rgb(41, 44, 49); border-radius: 5px;">
-      <img [src]="admin?.profile_image || 'assets/Images/user.png'" alt="avatar" width="40" height="32"
-           style="border-radius: 5px; margin-right: 8px;">
-      <span style="color: #1e88e5; margin-right: 8px;">{{admin?.username}}</span>
-      <mat-icon style="color: #1e88e5;">keyboard_arrow_down</mat-icon>
-    </button>
-  </div>
+    <div class="d-flex align-items-center gap-2 me-4">
+        <button mat-button [matMenuTriggerFor]="userMenu"
+            style="background-color: rgb(41, 44, 49); border-radius: 5px;">
+            <img [src]="admin?.profile_image || 'assets/Images/user.png'"
+                alt="avatar" width="40" height="32"
+                style="border-radius: 5px; margin-right: 8px;">
+            <span
+                style="color: #1e88e5; margin-right: 8px;">{{admin?.username}}</span>
+            <mat-icon style="color: #1e88e5;">keyboard_arrow_down</mat-icon>
+        </button>
+    </div>
 
-  <mat-menu #userMenu="matMenu">
-    <button mat-menu-item>
-      <span routerLink="/profile-admin">ดูโปรไฟล์ของฉัน</span>
-    </button>
-    <hr>
-    <button mat-menu-item>
-      <span (click)="logout()">ออกจากบัญชี</span>
-    </button>
-  </mat-menu>
+    <mat-menu #userMenu="matMenu">
+        <button mat-menu-item>
+            <span routerLink="/profile-admin">ดูโปรไฟล์ของฉัน</span>
+        </button>
+        <hr>
+        <button mat-menu-item>
+            <span (click)="logout()">ออกจากบัญชี</span>
+        </button>
+    </mat-menu>
 </mat-toolbar>
 
 <!-- เนื้อหาหลัก -->
@@ -107,17 +116,16 @@
     <!-- ตารางรายการเกม -->
     <div *ngIf="!loading" class="table-responsive">
         <table class="table table-dark table-bordered align-middle text-center"
-            style="background-color: #1b263b;">
+            style="background-color: #1b263b; table-layout: fixed; width: 100%;">
             <thead class="align-middle">
                 <tr>
                     <th style="width: 80px;">รูป</th>
                     <th style="width: 150px;">ชื่อเกม</th>
                     <th style="width: 120px;">ประเภท</th>
                     <th style="width: 100px;">ราคา</th>
-                    <th style="width: 250px;">รายละเอียด</th>
+                    <th style="width: auto;">รายละเอียด</th>
                     <th style="width: 120px;">วันที่ขาย</th>
-                    <th style="width: 150px;">จัดการ</th>
-                </tr>
+                    <th style="width: 180px;">จัดการ</th> </tr>
             </thead>
 
             <tbody>
@@ -129,26 +137,33 @@
                             style="width:70px; height:70px; object-fit:cover; border-radius:5px;">
                     </td>
 
-                    <td>{{ game.name }}</td>
+                    <td style="word-wrap: break-word;">{{ game.name }}</td>
                     <td>{{ game.genre }}</td>
                     <td>{{ game.price | number:'1.0-0' }} ฿</td>
-                    <td style="white-space: pre-wrap; text-align: left;">{{
+
+                    <td
+                        style="white-space: pre-wrap; text-align: left; word-wrap: break-word;">{{
                         game.description }}</td>
+
                     <td>{{ formatThaiDate(game.release_date) }}</td>
 
-                    <td>
-                        <button
-                            class="btn btn-primary btn-sm me-2"
-                            (click)="editGame(game)">
-                            แก้ไข
-                        </button>
-
-                        <button
-                            (click)="removeGame(game)"
-                            class="btn btn-danger btn-sm">
-                            ลบ
+                    <td class="d-flex flex-column gap-2 align-items-center">
+                        <button class="btn btn-primary btn-sm w-100"
+                            (click)="editGame(game)">แก้ไข</button>
+                        <button class="btn btn-danger btn-sm w-100"
+                            (click)="removeGame(game)">ลบ</button>
+                        <input type="file" multiple
+                            (change)="onUploadImageGame($event, game.id.toString())"
+                            style="display:none" #fileInput>
+                        <button class="btn btn-warning btn-sm w-100"
+                            (click)="fileInput.click()"
+                            [disabled]="uploadingGameId === game.id.toString()">
+                            <span *ngIf="uploadingGameId === game.id.toString()"
+                                class="spinner-border spinner-border-sm me-2"></span>
+                            อัปโหลดรูปเกม
                         </button>
                     </td>
+
                 </tr>
             </tbody>
         </table>

@@ -27,6 +27,7 @@ export class HomeAdmin {
   loading = true;
   gameForm: FormGroup;
   editingGameId: string | null = null;
+  uploadingGameId: string | null = null;
   genres: string[] = ['Action', 'Adventure', 'RPG', 'Strategy', 'Sports', 'Simulation', 'Horror', 'Racing'];
 
   constructor(private gamesService: GamesService, private fb: FormBuilder, private router: Router, private userService: UserService) {
@@ -41,19 +42,19 @@ export class HomeAdmin {
 
   async ngOnInit(): Promise<void> {
     await this.loadGames();
-     const token = localStorage.getItem('token');
-      if (!token) {
-        this.router.navigate(['/login']);
-        return;
-      }
-  
-      try {
-        this.admin = await this.userService.getUser();
-        console.log('User loaded:', this.admin);
-      } catch (err) {
-        console.error('Failed to load user', err);
-        this.router.navigate(['/login']);
-      }
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    try {
+      this.admin = await this.userService.getUser();
+      console.log('User loaded:', this.admin);
+    } catch (err) {
+      console.error('Failed to load user', err);
+      this.router.navigate(['/login']);
+    }
   }
 
   async loadGames() {
@@ -134,6 +135,28 @@ export class HomeAdmin {
       alert('ลบเกมไม่สำเร็จ!');
     }
   }
+
+  async onUploadImageGame(event: any, gameId: string) {
+    const files: File[] = Array.from(event.target.files);
+    if (!files.length) return;
+    this.uploadingGameId = gameId;
+    try {
+      const urls = await this.gamesService.uploadGameImages(gameId, files);
+      console.log('อัปโหลดรูปสำเร็จ:', urls);
+      alert('อัปโหลดรูปสำเร็จ!');
+      // อัปเดต UI ถ้าต้องการแสดงรูปล่าสุด
+      const game = this.games.find(g => g.id.toString() === gameId);
+      if (game) game.images = urls;
+    } catch (err) {
+      console.error('อัปโหลดไม่สำเร็จ:', err);
+      alert('อัปโหลดไม่สำเร็จ! ขนาดไฟล์ใหญ่เกินไป');
+    } finally {
+      this.uploadingGameId = null; // อัปโหลดเสร็จ
+    }
+  }
+
+
+
 
   logout() {
     localStorage.removeItem('token');
