@@ -27,4 +27,22 @@ export class HistoryService {
       throw error;
     }
   }
+
+  public async getHistoryById(id: string) : Promise<GetTransactionsWalletResponse[]>{
+   const url = `${this.constants.API_ENDPOINT}/admin/transactions/${id}`;
+    const token = localStorage.getItem('token') ?? '';
+    const headers = new HttpHeaders({
+      'Authorization': token ? `Bearer ${token}` : ''
+    });
+
+    try {
+      const response = await lastValueFrom(
+        this.http.get<GetTransactionsWalletResponse[]>(url, { headers })
+      );
+      return response;
+    } catch (error) {
+      console.error('โหลดข้อมูลประวัติไม่สำเร็จ:', error);
+      throw error;
+    }
+  }
 }

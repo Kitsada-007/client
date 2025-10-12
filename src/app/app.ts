@@ -21,7 +21,7 @@ export class App {
       .subscribe((event: any) => {
         const currentUrl = event.urlAfterRedirects;
         this.isLoginOrRegisterPage =
-          currentUrl.includes('login') || currentUrl.includes('register') || currentUrl.includes('home-admin') || currentUrl.includes('profile-admin') || currentUrl.includes('transaction');
+          currentUrl.includes('login') || currentUrl.includes('register') || currentUrl.includes('home-admin') || currentUrl.includes('profile-admin') || currentUrl.includes('transaction') || currentUrl.includes('historys');
       });
   }
 }

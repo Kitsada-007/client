@@ -12,12 +12,13 @@ import { Router } from '@angular/router';
 import { GetProfileResponse } from '../../../models/response/get_profile_res';
 import { UserService } from '../../../services/api/user';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { HeaderAdmin } from "../../../components/header-admin/header-admin";
 
 
 
 @Component({
   selector: 'app-home-admin',
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule, CommonModule, ReactiveFormsModule, RouterLink, RouterLinkActive],
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule, CommonModule, ReactiveFormsModule, RouterLink, RouterLinkActive, HeaderAdmin],
   templateUrl: './home-admin.html',
   styleUrl: './home-admin.scss'
 })
