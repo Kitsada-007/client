@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { GetOrderGameResponse } from '../../../models/response/get_orders_res';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -19,31 +20,35 @@ export class ShoppingCart {
     private cartService: CartService,
     private router: Router
   ) { }
-  
+
   ngOnInit() {
     this.cartService.cart$.subscribe((items) => {
       this.cartItems = items;
     });
   }
+
   // รวมราคาเกม
   get totalPrice() {
     const total = this.cartItems.reduce((sum, g) => sum + Number(g.price || 0), 0);
     return Number(total.toFixed(2));
   }
-  
+
   // get discountedPrice() {
   //   let price = this.totalPrice;
   //   if (this.couponCode.trim().toUpperCase() === 'SALE10') price *= 0.9;
   //   return Number(price.toFixed(2));
   // }
+
   // ลบเกมออกจากรถเข็นทีละเกม
   removeItem(id: number) {
     this.cartService.removeItem(id);
   }
+
   // ลบเกมออกหมดทั้งตะกร้า
   clearCart() {
     this.cartService.clearCart();
   }
+
   // จ่ายเงิน
   async checkout() {
     if (this.cartItems.length === 0) {
@@ -52,21 +57,23 @@ export class ShoppingCart {
     }
 
     try {
-      const res = await this.cartService.checkout(
+      const res: GetOrderGameResponse = await this.cartService.checkout(
         this.cartItems.map(g => g.id),
         this.couponCode
       );
 
-      if (res?.success) {
-        alert(`ชำระเงินสำเร็จ! Order ID: ${res.order_id}`);
+      if (res.success) {
+        alert(
+          `ชำระเงินสำเร็จ!\nOrder ID: ${res.order_id}\nยอดเงินคงเหลือ: ${res.remaining_balance} บาท`
+        );
         this.cartService.clearCart();
-        // this.router.navigate(['/library']);
       } else {
-        alert(res?.message || 'เกิดข้อผิดพลาดในการสั่งซื้อ');
+        alert(`${res.message}`);
       }
-    } catch (err) {
-      alert('คุณได้ทำการซื้อเกมนี้ไปแล้ว');
+    } catch (err: any) {
       console.error(err);
+      alert(err.error?.message || 'เกิดข้อผิดพลาดในการเชื่อมต่อ');
     }
   }
+
 }

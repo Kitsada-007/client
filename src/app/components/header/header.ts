@@ -36,6 +36,7 @@ export class Header {
     private location: Location
   ) { }
 
+  // เช็ค Token
   async ngOnInit() {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -46,7 +47,7 @@ export class Header {
     try {
       this.user = await this.userService.getUser();
       this.games = await this.gamesService.getGameAll();
-      this.featuredGames = this.games.slice(0, 4); // เลือกเกมเด่น 3-4 เกม
+      this.featuredGames = this.games.slice(0, 4); // เลือกเกมมาโชว์ใน Dropdown
     } catch (err) {
       console.error('โหลดข้อมูลไม่สำเร็จ', err);
       this.router.navigate(['/login']);
@@ -69,7 +70,7 @@ export class Header {
     }
   }
 
-  // เมื่อคลิกออกจาก input ให้ปิด popup (delay เล็กน้อยเพื่อให้ click event ทำงานก่อน)
+  // ไว้ทำให้ POP ค้นหาหายไปเมื่อกดออก
   onBlurSearch() {
     setTimeout(() => {
       this.showPopup = false;
@@ -80,7 +81,6 @@ export class Header {
   selectGame(game: GetGameResponse) {
     this.searchTerm = game.name;
     this.showPopup = false;
-    // สามารถ navigate ไปยังหน้าเกมได้ เช่น:
     this.router.navigate(['/detail-game', game.id]);
   }
 
@@ -102,6 +102,13 @@ export class Header {
 
   }
 
+  // ไปยัง หมวดหมู่เกม
+  goToCategory(genre: string) {
+    this.router.navigate(['/typegame', genre],
+      {
+      });
+  }
+
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
@@ -114,12 +121,7 @@ export class Header {
   goForward() {
     this.location.forward();
   }
-  // ไปยัง หมวดหมู่เกม
-  goToCategory(genre: string) {
-    this.router.navigate(['/typegame', genre],
-       {
-    });
-  }
+
 
 }
 

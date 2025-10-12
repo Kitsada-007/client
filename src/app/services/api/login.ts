@@ -11,7 +11,8 @@ import { GetLoginResponse } from '../../models/response/get_login_res';
 })
 export class LoginService { 
   constructor(private constants : Constants, private http: HttpClient) {}
-
+  
+  // เข้าสู่ระบบ
   public async login(data: GetLoginRequest): Promise<GetLoginResponse> {
     const url = this.constants.API_ENDPOINT + '/login';
     const response = await lastValueFrom(

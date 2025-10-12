@@ -10,6 +10,7 @@ import { lastValueFrom } from 'rxjs';
 export class HistoryService {
   constructor(private constants: Constants, private http: HttpClient) { }
 
+  // ดึงข้อมูลประวัติ
   public async getHistory(): Promise<GetTransactionsWalletResponse[]> {
     const url = `${this.constants.API_ENDPOINT}/user/transactions`;
     const token = localStorage.getItem('token') ?? '';
@@ -28,6 +29,7 @@ export class HistoryService {
     }
   }
 
+  // ดึงข้อมูลประวัติของแต่ละคน
   public async getHistoryById(id: string) : Promise<GetTransactionsWalletResponse[]>{
    const url = `${this.constants.API_ENDPOINT}/admin/transactions/${id}`;
     const token = localStorage.getItem('token') ?? '';

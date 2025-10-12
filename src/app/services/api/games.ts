@@ -13,6 +13,7 @@ import { GetLibraryGameResponse } from '../../models/response/get_library_res';
 })
 export class GamesService {
   constructor(private constants: Constants, private http: HttpClient) { }
+
   // ดึงข้อมูลเกมทั้งหมด
   public async getGameAll(options?: any) {
     const url = this.constants.API_ENDPOINT + '/games';
@@ -92,6 +93,7 @@ export class GamesService {
       throw err;
     }
   }
+  
   // ดึงข้อมูลเกมตาม ID เพื่อแสดงรายละเอียดเกม
   async getGameById(id: number): Promise<GetGameResponse> {
     const url = `${this.constants.API_ENDPOINT}/games/${id}`;
@@ -122,10 +124,11 @@ export class GamesService {
       throw error;
     }
   }
+
   // upload image game
   async uploadGameImages(gameId: string, files: File[]) {
     const formData = new FormData();
-    files.forEach(file => formData.append('images', file)); // ชื่อ field ต้องตรงกับ backend ('images')
+    files.forEach(file => formData.append('images', file)); 
 
     const token = localStorage.getItem('token') || '';
     const headers = { Authorization: `Bearer ${token}` };

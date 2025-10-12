@@ -40,7 +40,7 @@ export class HomeAdmin {
     });
   }
 
-
+  // มี Token ไหม
   async ngOnInit(): Promise<void> {
     await this.loadGames();
     const token = localStorage.getItem('token');
@@ -57,7 +57,7 @@ export class HomeAdmin {
       this.router.navigate(['/login']);
     }
   }
-
+  // ดึงข้อมูลเกมทั้งหมดมาแสดง
   async loadGames() {
     try {
       this.games = await this.gamesService.getGameAll();
@@ -67,7 +67,7 @@ export class HomeAdmin {
       this.loading = false;
     }
   }
-
+  // แปลงวันที่เป็นไทย 
   formatThaiDate(date: Date | string): string {
     const d = date instanceof Date ? date : new Date(date);
     const day = d.getDate().toString().padStart(2, '0');
@@ -76,6 +76,7 @@ export class HomeAdmin {
     return `${day}/${month}/${year}`;
   }
 
+  //  แก้ไขเกม
   editGame(game: GetGameResponse) {
     this.editingGameId = game.id.toString();
     this.gameForm.patchValue({
@@ -86,17 +87,20 @@ export class HomeAdmin {
     });
   }
 
+  //ยกเลิกแก้ไขเกม
   cancelEdit() {
     this.gameForm.reset();
     this.editingGameId = null;
   }
 
+  // เพิ่มเกม
   async submitGame() {
     if (this.gameForm.invalid) {
       alert('กรุณากรอกข้อมูลให้ครบ');
       return;
     }
-
+    
+    // สร้าง Object เพื่อส่งไป Backend
     const gameData: GetGameRequest = {
       name: this.gameForm.value.name.trim(),
       price: Number(this.gameForm.value.price),
@@ -104,7 +108,7 @@ export class HomeAdmin {
       description: this.gameForm.value.description.trim()
 
     };
-    console.log('ส่งไป backend:', gameData);
+    console.log(gameData);
 
     try {
       if (this.editingGameId) {
@@ -124,6 +128,7 @@ export class HomeAdmin {
     }
   }
 
+  // ลบเกม
   async removeGame(game: GetGameResponse) {
     if (!confirm(`คุณแน่ใจไหมว่าจะลบเกม "${game.name}"`)) return;
 
@@ -137,6 +142,7 @@ export class HomeAdmin {
     }
   }
 
+  // upload รูปเกม
   async onUploadImageGame(event: any, gameId: string) {
     const files: File[] = Array.from(event.target.files);
     if (!files.length) return;
@@ -156,9 +162,7 @@ export class HomeAdmin {
     }
   }
 
-
-
-
+  // ล็อคเอ้า
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);

@@ -10,7 +10,8 @@ import { lastValueFrom } from 'rxjs/internal/lastValueFrom';
 })
 export class RegisterService {
   constructor(private constants: Constants, private http: HttpClient) {}
-
+  
+  // สมัครสมาชิก
   public async register(data: GetRegisterRequest): Promise<GetRegisterResponse> {
     const url = this.constants.API_ENDPOINT + '/register';
     const response = await lastValueFrom(

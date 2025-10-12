@@ -41,7 +41,8 @@ export class Wallet {
       this.loading = true;
       const res = await this.walletService.topUp({ amount });
       alert(`เติมเงินสำเร็จ! ยอดเงินคงเหลือ: ${res.new_balance} บาท`);
-
+      
+      // อัปเดตเงิน
       if (this.user) {
         this.user.wallet_balance = res.new_balance.toString();
       }

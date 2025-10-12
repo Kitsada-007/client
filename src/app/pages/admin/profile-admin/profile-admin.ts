@@ -5,10 +5,11 @@ import { UserService } from '../../../services/api/user';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HeaderAdmin } from '../../../components/header-admin/header-admin';
 
 @Component({
   selector: 'app-profile-admin',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, HeaderAdmin],
   templateUrl: './profile-admin.html',
   styleUrl: './profile-admin.scss'
 })

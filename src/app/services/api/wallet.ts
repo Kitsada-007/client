@@ -16,7 +16,7 @@ export class WalletService {
     this.baseUrl = this.constants.API_ENDPOINT + '/user/wallet';
   }
 
-
+  // เติมเงิน
   public async topUp(data: GetWalletRequest): Promise<GetWalletResponse> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({

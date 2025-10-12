@@ -34,6 +34,7 @@ export class DetailGame {
     await this.loadGame();     // โหลดเกมปัจจุบัน
   }
 
+  // โหลดข้อมูล Top 5
   async loadTopGames() {
     try {
       const response = await this.gamesService.getTopGame();
@@ -45,6 +46,7 @@ export class DetailGame {
     }
   }
 
+  // โหลดข้อมูลเกม
   async loadGame() {
     this.loading = true;
     try {
@@ -67,16 +69,19 @@ export class DetailGame {
     }
   }
 
+  // กดเข้ารถเข็น
   addToCart() {
     if (!this.game) return;
     this.cartService.addToCart(this.game);
     // this.router.navigate(['/shopping']);
   }
 
+  // เลือกเปลี่ยนรูปมาโชว์
   selectImage(img: string) {
     this.selectedImage = img;
   }
 
+  // แปลงเป็นไทย
   formatThaiDate(date: Date | string | undefined): string {
     if (!date) return '-';
     const d = date instanceof Date ? date : new Date(date);
