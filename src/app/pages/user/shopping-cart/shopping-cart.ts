@@ -65,7 +65,7 @@ export class ShoppingCart {
         alert(res?.message || 'เกิดข้อผิดพลาดในการสั่งซื้อ');
       }
     } catch (err) {
-      alert('ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้');
+      alert('คุณได้ทำการซื้อเกมนี้ไปแล้ว');
       console.error(err);
     }
   }
