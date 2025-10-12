@@ -5,6 +5,7 @@ import { lastValueFrom } from 'rxjs';
 import { GetGameResponse } from '../../models/response/get_game_res';
 import { GetGameRequest } from '../../models/request/get_game_req';
 import { GetTopGameResponse } from '../../models/response/get_top_res';
+import { GetLibraryGameResponse } from '../../models/response/get_library_res';
 
 
 @Injectable({
@@ -121,6 +122,8 @@ export class GamesService {
       throw error;
     }
   }
+
+  
 
   // อัปโหลดรูปภาพเกม (สำหรับแอดมิน)
   // async uploadGameImages(gameId: string, files: File[]): Promise<string[]> {

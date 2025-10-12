@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GetGameResponse } from '../../../models/response/get_game_res';
 import { GamesService } from '../../../services/api/games';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Datum } from '../../../models/response/get_top_res';
+import { CartService } from '../../../services/api/cart';
 
 @Component({
   selector: 'app-detail-game',
@@ -21,7 +22,10 @@ export class DetailGame {
 
   constructor(
     private route: ActivatedRoute,
-    private gamesService: GamesService
+    private gamesService: GamesService,
+    private cartService: CartService,
+    private router: Router
+
   ) { }
 
   async ngOnInit() {
@@ -61,6 +65,12 @@ export class DetailGame {
     } finally {
       this.loading = false;
     }
+  }
+
+  addToCart() {
+    if (!this.game) return;
+    this.cartService.addToCart(this.game);
+    // this.router.navigate(['/shopping']);
   }
 
   selectImage(img: string) {

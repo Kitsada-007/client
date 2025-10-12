@@ -3,6 +3,7 @@ import { Constants } from '../../config/constants';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { GetProfileResponse , UserReq} from '../../models/response/get_profile_res';
+import { GetLibraryGameResponse } from '../../models/response/get_library_res';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +54,24 @@ public async editUserProfile(userData: Partial<UserReq>): Promise<UserReq> {
 
   return res;
 }
+
+// ดึงคลังเกมของ user
+  public async getLibrary(): Promise<GetLibraryGameResponse[]> {
+    const url = `${this.constants.API_ENDPOINT}/user/library`;
+    const token = localStorage.getItem('token') || '';
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    try {
+      const res = await lastValueFrom(this.http.get<GetLibraryGameResponse[]>(url, { headers }));
+      return res;
+    } catch (error) {
+      console.error('โหลดคลังเกมไม่สำเร็จ:', error);
+      throw error;
+    }
+  }
 
 
 }

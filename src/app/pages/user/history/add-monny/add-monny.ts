@@ -28,6 +28,7 @@ export class AddMonny {
   }
 
   get totalAmount(): number {
-    return this.moneyHistory.reduce((sum, item) => sum + Number(item.amount), 0);
+    const total =  this.moneyHistory.reduce((sum, item) => sum + Number(item.amount), 0);
+    return Number(total.toFixed(2));
   }
 }

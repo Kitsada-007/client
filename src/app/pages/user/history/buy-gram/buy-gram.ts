@@ -29,6 +29,7 @@ export class BuyGram {
   }
 
   get totalAmount(): number {
-    return this.gameHistory.reduce((sum, item) => sum + Number(item.amount), 0);
+    const total =  this.gameHistory.reduce((sum, item) => sum + Number(item.amount), 0);
+    return Number(total.toFixed(2));
   }
 }
