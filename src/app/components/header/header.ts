@@ -101,6 +101,10 @@ export class Header {
     return Array.from(genres);
 
   }
+  getGameImage(game: GetGameResponse): string {
+    if (!game.images || game.images.length === 0) return 'assets/Images/no-image.png';
+    return game.images[0];
+  }
 
   // ไปยัง หมวดหมู่เกม
   goToCategory(genre: string) {
