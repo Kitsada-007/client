@@ -15,6 +15,7 @@ import { Wallet } from './pages/user/wallet/wallet';
 import { Transaction } from './pages/admin/home-admin/transaction/transaction';
 import { Typegame } from './pages/user/typegame/typegame';
 import { HistoryView } from './pages/admin/home-admin/history-view/history-view';
+import { Promo } from './pages/admin/home-admin/promo/promo';
 
 
 export const routes: Routes = [
@@ -23,7 +24,7 @@ export const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'register', component: Register },
   { path: 'profile', component: Profile },
- 
+
   { path: 'collection', component: Collection },
   { path: 'detail-game/:id', component: DetailGame },
   { path: 'wallet', component: Wallet },
@@ -37,10 +38,11 @@ export const routes: Routes = [
   },
   // admin-path
   {
-    path: 'home-admin',component: HomeAdmin,
+    path: 'home-admin', component: HomeAdmin,
   },
-  {path: 'transaction', component: Transaction},
+  { path: 'transaction', component: Transaction },
   { path: 'profile-admin', component: ProfileAdmin },
-  {path: 'typegame/:genre', component: Typegame},
-  { path: 'historys/:id', component: HistoryView}
+  { path: 'typegame/:genre', component: Typegame },
+  { path: 'historys/:id', component: HistoryView },
+  { path: 'promo', component: Promo }
 ];
